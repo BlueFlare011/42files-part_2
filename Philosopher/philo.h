@@ -9,14 +9,15 @@
 
 typedef struct s_philo
 {
-	int	num_philo;
-	int	time_to_die;
-	int	time_to_eat;
-	int	time_to_sleep;
-	int	num_times_to_eat;
+	int	n_philo;
+	int	id_philo;
+	int	t_die;
+	int	t_eat;
+	int	t_sleep;
+	int	n_eat;
 }t_philo;
 
 
 int	ft_atoi(const char *str);
-
+int	check_args(int num, char **args);
 #endif

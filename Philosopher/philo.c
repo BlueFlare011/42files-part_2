@@ -1,50 +1,65 @@
 #include "philo.h"
 
-int	create_philo_structs(int argc, char **argv, t_philo **philo)
+int	create_philos(t_param *param)
 {
-	int	i;
-	int	num_philo;
+	pthread_t	*philos_t;
+	t_philo		*philo_s;
+	int			i;
 
 	i = 0;
-	num_philo = ft_atoi(argv[1]);
-	*philo = (t_philo *) malloc(sizeof(t_philo) * num_philo);
-	if (!*philo)
+	philos_t = malloc(sizeof(pthread_t) * param->n_philo);
+	if (!philos_t)
 	{
-		write(1, "Error: Fallo el malloc\n", 23);
-		return (0);
+		write(2, "Error: Malloc Allocation\n", 25);
+		return (3);
 	}
-	while (i < num_philo)
+	philo_s = malloc(sizeof(t_philo) * param->n_philo);
+	if (!philo_s)
 	{
-		philo[i]->n_philo = ft_atoi(argv[1]);
-		philo[i]->id_philo = i;
-		philo[i]->t_die = ft_atoi(argv[2]);
-		philo[i]->t_eat = ft_atoi(argv[3]);
-		philo[i]->t_sleep = ft_atoi(argv[4]);
-		if (argc == 6)
-			philo[i]->n_eat = ft_atoi(argv[5]);
-		else
-			philo[i]->n_eat = -1;
+		free(philos_t);
+		write(2, "Error: Malloc Allocation\n", 25);
+		return (3);
+	}
+	while (i < param->n_philo)
+	{
+		philo_s[i].id = i + 1;
+		philo_s[i].param = param;
+		pthread_create(&philos_t[i], NULL, &rutine, &philo_s[i]);
 		i++;
 	}
-	return (1);
+	
+}
+
+int	create_structs(int argc, char **argv, t_param *param)
+{
+	param->n_philo = ft_atoi(argv[1]);
+	param->t_die = ft_atoi(argv[2]);
+	param->t_eat = ft_atoi(argv[3]);
+	param->t_sleep = ft_atoi(argv[4]);
+	if (argc == 6)
+		param->n_eat = ft_atoi(argv[5]);
+	else
+		param->n_eat = -1;
+	if (param->n_philo == 0 || param->t_die == 0 || param->t_eat == 0
+		|| param->t_sleep == 0 || param->n_eat == 0)
+		return (1);
+	return (0);
 }
 
 int	main(int argc, char **argv)
 {
-	t_philo	*philo;
+	t_param	param;
 
-	if (argc < 5 && argc > 6)
+	if (argc < 5 || argc > 6)
 	{
 		write(2, "Error: El numero de argumentos es erroneo\n", 42);
 		return (1);	//Error numero de argumentos
 	}
-	if (!check_args(argc, argv))
+	if (create_structs(argc, argv, &param))
 	{
-		write(2, "Error: El contenido de los argumentos es erroneo\n", 50);
+		write(2, "Error: Uno o varios argumentos son erroneos\n", 44);
 		return (2);
 	}
-	if (!create_philo_structs(argc, argv, &philo))
-		return (3);
 	
 	return (0);
 }

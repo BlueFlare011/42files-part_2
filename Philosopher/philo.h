@@ -19,10 +19,12 @@ typedef struct s_param
 typedef struct s_philo
 {
 	int	id;
-	t_param *param;
+	t_param			*param;
+	pthread_mutex_t	left;
+	pthread_mutex_t	right;
 }t_philo;
 
 
 int	ft_atoi(const char *str);
-void	*rutine(t_param *philo);
+void	*rutine(void *aux_struct);
 #endif

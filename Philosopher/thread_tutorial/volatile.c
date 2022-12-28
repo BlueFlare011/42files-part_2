@@ -27,6 +27,6 @@ int main (void)
 {
 	pthread_t t1, t2;
 	int x = 5;
-
+	
 	return (0);
 }

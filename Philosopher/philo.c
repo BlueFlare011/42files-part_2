@@ -2,32 +2,53 @@
 
 int	create_philos(t_param *param)
 {
-	pthread_t	*philos_t;
-	t_philo		*philo_s;
+	pthread_t		*philos_t;
+	t_philo			**philo_s;
+	pthread_mutex_t	*mutex;
 	int			i;
 
 	i = 0;
 	philos_t = malloc(sizeof(pthread_t) * param->n_philo);
 	if (!philos_t)
-	{
-		write(2, "Error: Malloc Allocation\n", 25);
-		return (3);
-	}
-	philo_s = malloc(sizeof(t_philo) * param->n_philo);
+		return (write(2, "Error: Malloc Allocation\n", 25));
+	philo_s = malloc(sizeof(t_philo *) * param->n_philo);
 	if (!philo_s)
 	{
 		free(philos_t);
-		write(2, "Error: Malloc Allocation\n", 25);
-		return (3);
+		return (write(2, "Error: Malloc Allocation\n", 25));
+	}
+	mutex = malloc(sizeof(pthread_mutex_t) * param->n_philo);
+	if (!mutex)
+	{
+		free(philos_t);
+		free(philo_s);
+		return (write(2, "Error: Malloc Allocation\n", 25));
 	}
 	while (i < param->n_philo)
 	{
-		philo_s[i].id = i + 1;
-		philo_s[i].param = param;
-		pthread_create(&philos_t[i], NULL, &rutine, &philo_s[i]);
+		philo_s[i] = malloc(sizeof(t_philo));
+		philo_s[i]->id = i + 1;
+		philo_s[i]->param = param;
+		if (i == 0){
+			philo_s[i]->left = mutex[0];
+			philo_s[i]->right = mutex[param->n_philo - 1];
+		}
+		philo_s[i]->left = mutex[i];
+		philo_s[i]->right = mutex[i - 1];
+		pthread_create(&philos_t[i], NULL, &rutine, (void *)philo_s[i]);
 		i++;
 	}
-	
+	i = 0;
+	while (i < param->n_philo)
+	{
+		pthread_join(philos_t[i], NULL);
+		free(philo_s[i]);
+		i++;
+	}
+	free(mutex);
+	free(philos_t);
+	free(philo_s);
+	return (0);
 }
 
 int	create_structs(int argc, char **argv, t_param *param)
@@ -60,6 +81,7 @@ int	main(int argc, char **argv)
 		write(2, "Error: Uno o varios argumentos son erroneos\n", 44);
 		return (2);
 	}
-	
+	create_philos(&param);
+	printf("Fin\n");
 	return (0);
 }

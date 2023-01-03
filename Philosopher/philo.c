@@ -3,15 +3,15 @@
 int	create_philos(t_param *param)
 {
 	pthread_t		*philos_t;
-	t_philo			**philo_s;
+	t_philo			*philo_s;
 	pthread_mutex_t	*mutex;
-	int			i;
+	int				i;
 
 	i = 0;
 	philos_t = malloc(sizeof(pthread_t) * param->n_philo);
 	if (!philos_t)
 		return (write(2, "Error: Malloc Allocation\n", 25));
-	philo_s = malloc(sizeof(t_philo *) * param->n_philo);
+	philo_s = malloc(sizeof(t_philo) * param->n_philo);
 	if (!philo_s)
 	{
 		free(philos_t);
@@ -25,26 +25,27 @@ int	create_philos(t_param *param)
 		return (write(2, "Error: Malloc Allocation\n", 25));
 	}
 	while (i < param->n_philo)
+		pthread_mutex_init(&mutex[i++], NULL);
+	i = 0;
+	while (i < param->n_philo)
 	{
-		philo_s[i] = malloc(sizeof(t_philo));
-		philo_s[i]->id = i + 1;
-		philo_s[i]->param = param;
+		philo_s[i].id = i + 1;
+		philo_s[i].param = param;
 		if (i == 0){
-			philo_s[i]->left = mutex[0];
-			philo_s[i]->right = mutex[param->n_philo - 1];
+			philo_s[i].left = mutex[0];
+			philo_s[i].right = mutex[param->n_philo - 1];
 		}
-		philo_s[i]->left = mutex[i];
-		philo_s[i]->right = mutex[i - 1];
-		pthread_create(&philos_t[i], NULL, &rutine, (void *)philo_s[i]);
+		philo_s[i].left = mutex[i];
+		philo_s[i].right = mutex[i - 1];
+		pthread_create(&philos_t[i], NULL, &rutine, (void *)&philo_s[i]);
 		i++;
 	}
 	i = 0;
 	while (i < param->n_philo)
-	{
-		pthread_join(philos_t[i], NULL);
-		free(philo_s[i]);
-		i++;
-	}
+		pthread_join(philos_t[i++], NULL);
+	i = 0;
+	while (i < param->n_philo)
+		pthread_mutex_destroy(&mutex[i++]);
 	free(mutex);
 	free(philos_t);
 	free(philo_s);

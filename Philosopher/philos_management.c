@@ -13,6 +13,7 @@ void	*rutine(void *param)
 
 	philoData = (t_philo *)param;
 	gettimeofday(&start, NULL);
+
 	while (1)
 	{	//No funcionan los mutex, hay que echar un vistazo, me voy a suspender un push_swap
 		pthread_mutex_lock(&philoData->right);

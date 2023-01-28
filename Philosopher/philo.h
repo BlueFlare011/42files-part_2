@@ -9,18 +9,19 @@
 
 typedef struct s_param
 {
-	int				n_philo;
-	int				t_die;
-	int				t_eat;
-	int				t_sleep;
-	int				n_eat;
-	pthread_mutex_t	*forks;
+	int	n_philo;
+	int	t_die;
+	int	t_eat;
+	int	t_sleep;
+	int	n_eat;
 }t_param;
 
 typedef struct s_philo
 {
-	int				id;
-	struct s_param	*param;
+	int	id;
+	t_param			*param;
+	pthread_mutex_t	left;
+	pthread_mutex_t	right;
 }t_philo;
 
 

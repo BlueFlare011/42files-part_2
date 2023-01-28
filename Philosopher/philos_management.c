@@ -15,17 +15,37 @@ void	*rutine(void *param)
 	gettimeofday(&start, NULL);
 
 	while (1)
-	{	//No funcionan los mutex, hay que echar un vistazo, me voy a suspender un push_swap
-		pthread_mutex_lock(&philoData->right);
-		gettimeofday(&end, NULL);
-		printf("%0.3f %d has taken a fork\n", get_time(&start, &end), philoData->id);
-		pthread_mutex_lock(&philoData->left);
-		gettimeofday(&end, NULL);
-		printf("%0.3f %d has taken a fork\n", get_time(&start, &end), philoData->id);
+	{
+		if (philoData->id % 2 == 1)
+		{
+			pthread_mutex_lock(philoData->right);
+			gettimeofday(&end, NULL);
+			printf("%0.3f %d has taken a fork\n", get_time(&start, &end), philoData->id);
+			pthread_mutex_lock(philoData->left);
+			gettimeofday(&end, NULL);
+			printf("%0.3f %d has taken a fork\n", get_time(&start, &end), philoData->id);
+		}
+		else
+		{
+			pthread_mutex_lock(philoData->left);
+			gettimeofday(&end, NULL);
+			printf("%0.3f %d has taken a fork\n", get_time(&start, &end), philoData->id);
+			pthread_mutex_lock(philoData->right);
+			gettimeofday(&end, NULL);
+			printf("%0.3f %d has taken a fork\n", get_time(&start, &end), philoData->id);
+		}
 		printf("%0.3f %d is eating\n", get_time(&start, &end), philoData->id);
 		usleep(philoData->param->t_eat * 1000);
-		pthread_mutex_unlock(&philoData->right);
-		pthread_mutex_unlock(&philoData->left);
+		if (philoData->id % 2 == 1)
+		{
+			pthread_mutex_unlock(philoData->left);
+			pthread_mutex_unlock(philoData->right);
+		}
+		else
+		{
+			pthread_mutex_unlock(philoData->right);
+			pthread_mutex_unlock(philoData->left);
+		}
 		gettimeofday(&end, NULL);
 		printf("%0.3f %d is sleeping\n", get_time(&start, &end), philoData->id);
 		usleep(philoData->param->t_sleep * 1000);

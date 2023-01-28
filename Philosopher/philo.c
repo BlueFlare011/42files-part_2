@@ -33,13 +33,13 @@ int	create_philos(t_param *param)
 		philo_s[i].param = param;
 		if (i == 0)
 		{
-			philo_s[i].left = mutex[0];
-			philo_s[i].right = mutex[param->n_philo - 1];
+			philo_s[i].left = &mutex[0];
+			philo_s[i].right = &mutex[param->n_philo - 1];
 		}
 		else
 		{
-			philo_s[i].left = mutex[i];
-			philo_s[i].right = mutex[i - 1];
+			philo_s[i].left = &mutex[i];
+			philo_s[i].right = &mutex[i - 1];
 		}
 		pthread_create(&philos_t[i], NULL, &rutine, (void *)&philo_s[i]);	// Estoy multiplicando los mutex por cada struct 
 		i++;

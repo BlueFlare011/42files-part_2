@@ -20,8 +20,8 @@ typedef struct s_philo
 {
 	int	id;
 	t_param			*param;
-	pthread_mutex_t	left;
-	pthread_mutex_t	right;
+	pthread_mutex_t	*left;
+	pthread_mutex_t	*right;
 }t_philo;
 
 

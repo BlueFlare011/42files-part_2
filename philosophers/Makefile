@@ -1,11 +1,12 @@
 SRCS	=	philo.c\
 			error.c\
 			threadReady.c\
+			rutine.c\
 			utils/ft_atoi.c
 
 CC		=	gcc
 
-CFLAGS	=	-Wall -Wextra -Werror
+CFLAGS	=	-Wall -Wextra -Werror -g
 
 OBJS	=	$(SRCS:.c=.o)
 

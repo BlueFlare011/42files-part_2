@@ -29,9 +29,10 @@ typedef struct s_thread_data	// Parametros que tendra cada thread;
 	pthread_mutex_t	*right;
 }t_thread_data;
 
-int	ft_atoi(const char *str);
-int	argError(char **args);
+int		ft_atoi(const char *str);
+int		argError(char **args);
 void	createConstStruct(t_const_data *data, int length, char **args);
-int	setTheTable(t_const_data *param, t_thread_data **t_data, pthread_mutex_t **forks, pthread_t **philos);
+int		setTheTable(t_const_data *param, t_thread_data **t_data, pthread_mutex_t **forks, pthread_t **philos);
+void	*rutine(void	*param);
 
 #endif

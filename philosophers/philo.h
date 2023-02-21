@@ -5,6 +5,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <pthread.h>
+# include <time.h>
 
 typedef struct s_const_data	//Struct con los argumentos y otras constantes definidos
 {
@@ -27,6 +28,9 @@ typedef struct s_thread_data	// Parametros que tendra cada thread;
 	//Forks
 	pthread_mutex_t	*left;
 	pthread_mutex_t	*right;
+	// Numero de veces que ha comido cada filosofo (si se especifica el 5º argumento)
+	int	times_eat;
+
 }t_thread_data;
 
 int		ft_atoi(const char *str);

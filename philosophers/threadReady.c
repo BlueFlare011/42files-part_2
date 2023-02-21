@@ -28,6 +28,7 @@ void	setTheTable2(t_const_data *param, t_thread_data *t_data,
 		t_data[i].param = param;	// puntero a struct con los datos generales
 		t_data[i].left = &forks[0];	//El primero philosofo debe coger el primer tenedor y el ultimo tenedor
 		t_data[i].right = &forks[param->num_philo - 1];
+		t_data[i].times_eat = 0;
 		if (i != 0)	// Los demas cogen el de su id y el anterior
 		{
 			t_data[i].left = &forks[i];

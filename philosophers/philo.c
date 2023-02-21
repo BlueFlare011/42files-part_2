@@ -1,18 +1,5 @@
 #include "philo.h"
 
-void	testPhilos(t_thread_data *t_data, t_const_data *param)
-{
-	for (int i = 0; i < 3; i++)
-	{
-		printf("%d - %d\n", t_data[i].id, t_data[i].param->t_die);
-	}
-	param->t_die = 300;
-	for (int i = 0; i < 3; i++)
-	{
-		printf("%d - %d\n", t_data[i].id, t_data[i].param->t_die);
-	}
-}
-
 void	createPhilos(t_thread_data *t_data, pthread_t *philos, int	n_philos)
 {
 	int	i;
@@ -45,7 +32,7 @@ int main(int argc, char **argv)
 	createPhilos(t_data, philos, param.num_philo);
 	i = 0;
 	while (i < param.num_philo)	// Esperamos a que cada hilo muera
-		pthread_join(&philos[i++], NULL);
+		pthread_join(philos[i++], NULL);
 	i = 0;
 	while (i < param.num_philo)	// Destruimos todos los mutex
 		pthread_mutex_destroy(&forks[i++]);

@@ -4,8 +4,8 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <sys/time.h>
 # include <pthread.h>
-# include <time.h>
 
 typedef struct s_const_data	//Struct con los argumentos y otras constantes definidos
 {

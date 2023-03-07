@@ -30,7 +30,9 @@ typedef struct s_thread_data	// Parametros que tendra cada thread;
 	pthread_mutex_t	*right;
 	// Numero de veces que ha comido cada filosofo (si se especifica el 5º argumento)
 	int	times_eat;
-
+	// Temporizadores de actividad
+	unsigned int	time_aux;
+	unsigned int	time_dead;
 }t_thread_data;
 
 int		ft_atoi(const char *str);

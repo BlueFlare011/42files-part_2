@@ -8,11 +8,8 @@ void	createPhilos(t_thread_data *t_data, pthread_t *philos, int	n_philos)
 	while (i < n_philos)
 	{
 		pthread_create(&philos[i], NULL, rutine, (void *)&t_data[i]);
+		usleep(50);
 		i++;
-	}
-	while (t_data[0].param->alive)
-	{
-
 	}
 	// Matamos a los demas hilos
 }

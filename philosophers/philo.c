@@ -1,5 +1,15 @@
 #include "philo.h"
 
+void manageProgram(t_thread_data *t_data)
+{
+	while (1)
+	{
+		if (!t_data->param->alive){
+			break;
+		}
+	}
+}
+
 void	createPhilos(t_thread_data *t_data, pthread_t *philos, int	n_philos)
 {
 	int	i;
@@ -7,11 +17,22 @@ void	createPhilos(t_thread_data *t_data, pthread_t *philos, int	n_philos)
 	i = 0;
 	while (i < n_philos)
 	{
-		pthread_create(&philos[i], NULL, rutine, (void *)&t_data[i]);
+		pthread_create(&philos[i], NULL, routine, (void *)&t_data[i]);
 		usleep(50);
 		i++;
 	}
-	// Matamos a los demas hilos
+	manageProgram(t_data);	// Controlador de los philos desde el exterior
+	i = 0;
+	while (i < n_philos)	// Esperamos a que mueran los philos
+		pthread_join(philos[i++], NULL);
+	i = 0;
+	while (i < n_philos)	// Destuimos todos los mutex
+	{
+		pthread_mutex_destroy(t_data->left);
+		pthread_mutex_destroy(t_data->right);
+		i++;
+	}
+	pthread_mutex_destroy(t_data->param->w_print);
 }
 
 int main(int argc, char **argv)

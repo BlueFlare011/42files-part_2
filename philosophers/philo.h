@@ -19,6 +19,9 @@ typedef struct s_const_data	//Struct con los argumentos y otras constantes defin
 	//Otras variables
 	int	alive;
 
+	//Mutex proceso principal
+	pthread_mutex_t	*w_print;
+
 }t_const_data;
 
 typedef struct s_thread_data	// Parametros que tendra cada thread;
@@ -39,6 +42,7 @@ int		ft_atoi(const char *str);
 int		argError(char **args);
 void	createConstStruct(t_const_data *data, int length, char **args);
 int		setTheTable(t_const_data *param, t_thread_data **t_data, pthread_mutex_t **forks, pthread_t **philos);
-void	*rutine(void	*param);
+void	*routine(void	*param);
+unsigned int getTime(struct timeval *end, struct timeval *init);
 
 #endif

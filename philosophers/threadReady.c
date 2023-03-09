@@ -11,6 +11,8 @@ void	createConstStruct(t_const_data *data, int length, char **args)
 	else
 		data->n_eat = -1;
 	data->alive = 1;	//Asignamos la flag que señala si alguien a muerto
+	// Iniciamos mutex que controlaran actividades de los philos desde fuera
+	pthread_mutex_init(data->w_print, NULL);
 }
 
 void	setTheTable2(t_const_data *param, t_thread_data *t_data,

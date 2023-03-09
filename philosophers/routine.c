@@ -24,7 +24,6 @@ void	eating(t_thread_data *data, struct timeval *init, struct timeval *end)
 		printf("%ums %d has taken a fork(left)\n", getTime(end, init), data->id);
 	}
 	printf("%ums %d is eating\n", getTime(end, init), data->id);
-	write(1, "Traza\n", 6);
 	while (getTime(end, init) - (data->time_aux) < (unsigned int)data->param->t_eat)
 	{
 		if (!data->param->alive)
@@ -44,7 +43,7 @@ void	eating(t_thread_data *data, struct timeval *init, struct timeval *end)
 	}
 }
 
-void	*rutine(void	*param)
+void	*routine(void	*param)
 {
 	t_thread_data	*data;
 	struct timeval	init;

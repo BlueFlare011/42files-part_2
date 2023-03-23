@@ -12,18 +12,18 @@ void	eating(t_thread_data *data, struct timeval *init, struct timeval *end)
 	if (data->id % 2)
 	{
 		pthread_mutex_lock(data->left);
-		printf("%ums %d has taken a fork(left)\n", getTime(end, init), data->id);
+		smartPrint("has taken a fork(left)", init, end, data);
 		pthread_mutex_lock(data->right);
-		printf("%ums %d has taken a fork(right)\n", getTime(end, init), data->id);
+		smartPrint("has taken a fork(right)", init, end, data);
 	}
 	else
 	{
 		pthread_mutex_lock(data->right);
-		printf("%ums %d has taken a fork(right)\n", getTime(end, init), data->id);
+		smartPrint("has taken a fork(right)", init, end, data);
 		pthread_mutex_lock(data->left);
-		printf("%ums %d has taken a fork(left)\n", getTime(end, init), data->id);
+		smartPrint("has taken a fork(left)", init, end, data);
 	}
-	printf("%ums %d is eating\n", getTime(end, init), data->id);
+	smartPrint("is eating", init, end, data);
 	while (getTime(end, init) - (data->time_aux) < (unsigned int)data->param->t_eat)
 	{
 		if (!data->param->alive)
@@ -53,7 +53,6 @@ void	*routine(void	*param)
 	gettimeofday(&init, NULL);
 	while (data->param->alive)
 	{
-		data->time_dead = getTime(&end, &init);
 		eating(data, &init, &end);
 		data->times_eat++;
 		if (data->times_eat == data->param->n_eat)
@@ -61,7 +60,7 @@ void	*routine(void	*param)
 			printf("Filosofo %d ha terminado\n", data->id);
 			break;
 		}
-		printf("%ums %d is sleeping\n", getTime(&end, &init), data->id);
+		smartPrint("is sleeping", &init, &end, data);
 		while (getTime(&end, &init) - data->time_aux < (unsigned int)data->param->t_sleep)
 		{
 			if (!data->param->alive)
@@ -69,7 +68,7 @@ void	*routine(void	*param)
 		}
 		data->time_aux = getTime(&end, &init);
 		usleep(50);
-		printf("%ums %d is thinking\n", getTime(&end, &init), data->id);
+		smartPrint("is thinking", &init, &end, data);
 	}
 	return (NULL);
 }

@@ -1,7 +1,10 @@
 #include "philo.h"
 
-void	createConstStruct(t_const_data *data, int length, char **args)
+void	createConstStruct(t_const_data *data, int length, char **args, pthread_mutex_t *mutPrint)
 {
+	int	i;
+
+	i = 0;
 	data->num_philo = ft_atoi(args[1]);	// Asignamos los argumentos al struct
 	data->t_die = ft_atoi(args[2]);
 	data->t_eat = ft_atoi(args[3]);
@@ -11,8 +14,11 @@ void	createConstStruct(t_const_data *data, int length, char **args)
 	else
 		data->n_eat = -1;
 	data->alive = 1;	//Asignamos la flag que señala si alguien a muerto
+	data->last_meal = malloc(sizeof(unsigned int) * data->num_philo); // Falta comprobar que se ha reservado correctamente
+	while (i < data->num_philo)
+		data->last_meal[i++] = 0;
 	// Iniciamos mutex que controlaran actividades de los philos desde fuera
-	pthread_mutex_init(data->w_print, NULL);
+	data->w_print = mutPrint;
 }
 
 void	setTheTable2(t_const_data *param, t_thread_data *t_data,
@@ -32,7 +38,6 @@ void	setTheTable2(t_const_data *param, t_thread_data *t_data,
 		t_data[i].right = &forks[param->num_philo - 1]; // El orden de los filosofos en la mesa es en sentido horario
 		t_data[i].times_eat = 0;
 		t_data[i].time_aux = 0;
-		t_data[i].time_dead = 0;
 		if (i != 0)	// Los demas cogen el de su id y el anterior
 		{
 			t_data[i].left = &forks[i];

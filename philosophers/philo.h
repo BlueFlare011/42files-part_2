@@ -18,10 +18,9 @@ typedef struct s_const_data	//Struct con los argumentos y otras constantes defin
 
 	//Otras variables
 	int	alive;
-	unsigned int	*last_meal;	// Array con el tiempo de la ultima comida de cada thread
 
 	//Mutex proceso principal
-	pthread_mutex_t	*w_print;
+	pthread_mutex_t	*w_alive;
 }t_const_data;
 
 typedef struct s_thread_data	// Parametros que tendra cada thread;
@@ -33,7 +32,11 @@ typedef struct s_thread_data	// Parametros que tendra cada thread;
 	pthread_mutex_t	*right;
 	// Numero de veces que ha comido cada filosofo (si se especifica el 5º argumento)
 	int	times_eat;
+	// Struct Timeval
+	struct timeval init;
+	struct timeval end;
 	// Temporizadores de actividad
+	unsigned int	last_meal;
 	unsigned int	time_aux;
 }t_thread_data;
 
@@ -43,6 +46,6 @@ void	createConstStruct(t_const_data *data, int length, char **args, pthread_mute
 int		setTheTable(t_const_data *param, t_thread_data **t_data, pthread_mutex_t **forks, pthread_t **philos);
 void	*routine(void	*param);
 unsigned int getTime(struct timeval *end, struct timeval *init);
-void	smartPrint(char *message, struct timeval *init, struct timeval *end, t_thread_data *data);
+void	smartPrint(char *message, t_thread_data *data);
 
 #endif

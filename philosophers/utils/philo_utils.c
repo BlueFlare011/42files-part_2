@@ -1,8 +1,16 @@
 #include "../philo.h"
 
-void smartPrint(char *message, struct timeval *init, struct timeval *end, t_thread_data *data)
+unsigned int getTime(struct timeval *end, struct timeval *init)
 {
-	pthread_mutex_lock(data->param->w_print);
-	printf("%ums %d %s\n", getTime(end, init), data->id, message);
-	pthread_mutex_unlock(data->param->w_print);
+	gettimeofday(end, NULL);
+	return(end->tv_sec * 1000 + end->tv_usec / 1000)
+		- (init->tv_sec * 1000 + init->tv_usec / 1000);
+}
+
+void smartPrint(char *message, t_thread_data *data)
+{
+	pthread_mutex_lock(data->param->w_alive);
+	if (data->param->alive)
+		printf("%ums %d %s\n", getTime(&data->end, &data->init), data->id, message);
+	pthread_mutex_unlock(data->param->w_alive);
 }

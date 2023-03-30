@@ -10,8 +10,7 @@ void manageProgram(t_thread_data *t_data)
 	{
 		while (i < t_data->param->num_philo)
 		{
-			if (t_data->param->last_meal[i] ) // No se como plantealo
-			i++;	
+			i++;// Siguiente paso planificar las muertes
 		}
 	}
 }
@@ -38,7 +37,7 @@ void	createPhilos(t_thread_data *t_data, pthread_t *philos, int	n_philos)
 		pthread_mutex_destroy(t_data->right);
 		i++;
 	}
-	pthread_mutex_destroy(t_data->param->w_print);
+	pthread_mutex_destroy(t_data->param->w_alive);
 }
 
 int main(int argc, char **argv)
@@ -46,14 +45,14 @@ int main(int argc, char **argv)
 	t_const_data	param;
 	t_thread_data	*t_data;
 	pthread_mutex_t	*forks;
-	pthread_mutex_t	mutPrint;
+	pthread_mutex_t	mutAlive;
 	pthread_t		*philos;
 	int				i;
 
 	if ((argc > 6 && argc < 5) && argError(argv))
 		return (1);	// Error in arguments (1)
-	pthread_mutex_init(&mutPrint, NULL); // El mutex se tiene que inicializar y pasar a la struct para que no de sigsev
-	createConstStruct(&param, argc - 1, argv, &mutPrint);	// Creamos el struct
+	pthread_mutex_init(&mutAlive, NULL); // El mutex se tiene que inicializar y pasar a la struct para que no de sigsev
+	createConstStruct(&param, argc - 1, argv, &mutAlive);	// Creamos el struct
 	setTheTable(&param, &t_data, &forks, &philos);	// Ponemos la mesa(Configuramos los parametros de cada hilo)
 	createPhilos(t_data, philos, param.num_philo);
 	i = 0;
@@ -62,9 +61,8 @@ int main(int argc, char **argv)
 	i = 0;
 	while (i < param.num_philo)	// Destruimos todos los mutex
 		pthread_mutex_destroy(&forks[i++]);
-	pthread_mutex_destroy(param.w_print);
+	pthread_mutex_destroy(param.w_alive);
 	free(forks);	// Liberaos memoria alojada
-	free(param.last_meal);
 	free(philos);
 	free(t_data);
 	return (0);

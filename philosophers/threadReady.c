@@ -2,9 +2,6 @@
 
 void	createConstStruct(t_const_data *data, int length, char **args, pthread_mutex_t *mutAlive)
 {
-	int	i;
-
-	i = 0;
 	data->num_philo = ft_atoi(args[1]);	// Asignamos los argumentos al struct
 	data->t_die = ft_atoi(args[2]);
 	data->t_eat = ft_atoi(args[3]);

@@ -1,6 +1,6 @@
 #include "philo.h"
 
-void manageProgram(t_thread_data *t_data)
+void manageProgram(t_const_data *data, t_thread_data *t_data)
 {
 	int	i;
 
@@ -8,14 +8,18 @@ void manageProgram(t_thread_data *t_data)
 	usleep(100);
 	while (1)
 	{
-		while (i < t_data->param->num_philo)
+		while (i < data->num_philo)
 		{
-			i++;// Siguiente paso planificar las muertes
+			if (getTime(&t_data[i].end, &t_data[i].init) >= (unsigned int)data->t_die)
+			{
+				
+			}
+			i++;
 		}
 	}
 }
 
-void	createPhilos(t_thread_data *t_data, pthread_t *philos, int	n_philos)
+void	createPhilos(t_const_data *data, t_thread_data *t_data, pthread_t *philos, int	n_philos)
 {
 	int	i;
 
@@ -26,7 +30,7 @@ void	createPhilos(t_thread_data *t_data, pthread_t *philos, int	n_philos)
 		usleep(50);
 		i++;
 	}
-	manageProgram(t_data);	// Controlador de los philos desde el exterior
+	manageProgram(data, t_data);	// Controlador de los philos desde el exterior
 	i = 0;
 	while (i < n_philos)	// Esperamos a que mueran los philos
 		pthread_join(philos[i++], NULL);
@@ -54,7 +58,7 @@ int main(int argc, char **argv)
 	pthread_mutex_init(&mutAlive, NULL); // El mutex se tiene que inicializar y pasar a la struct para que no de sigsev
 	createConstStruct(&param, argc - 1, argv, &mutAlive);	// Creamos el struct
 	setTheTable(&param, &t_data, &forks, &philos);	// Ponemos la mesa(Configuramos los parametros de cada hilo)
-	createPhilos(t_data, philos, param.num_philo);
+	createPhilos(&param, t_data, philos, param.num_philo);
 	i = 0;
 	while (i < param.num_philo)	// Esperamos a que cada hilo muera
 		pthread_join(philos[i++], NULL);

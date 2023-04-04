@@ -3,13 +3,13 @@
 void sleeping(t_thread_data *data)
 {
 	smartPrint("is sleeping", data);
-	while (getTime(&data->end, &data->init) - data->time_aux < (unsigned int)data->param->t_sleep)
+	while (getTime(&data->param->end, &data->param->init) - data->time_aux < (unsigned int)data->param->t_sleep)
 	{
 		if (!data->param->alive)
-			exit(1);
+			break;
+		usleep(50);
 	}
-	data->time_aux = getTime(&data->end, &data->init);
-	usleep(50);
+	data->time_aux = getTime(&data->param->end, &data->param->init);
 }
 
 void grabForks(t_thread_data *data)
@@ -33,14 +33,15 @@ void grabForks(t_thread_data *data)
 void	eating(t_thread_data *data)
 {	
 	grabForks(data);
+	data->last_meal = getTime(&data->param->end, &data->param->init);
 	smartPrint("is eating", data);
-	while (getTime(&data->end, &data->init) - (data->time_aux) < (unsigned int)data->param->t_eat)
+	while (getTime(&data->param->end, &data->param->init) - (data->time_aux) < (unsigned int)data->param->t_eat)
 	{
 		if (!data->param->alive)
-			exit(1);
+			break;
+		usleep(50);
 	}
-	data->time_aux = getTime(&data->end, &data->init);
-	usleep(50);
+	data->time_aux = getTime(&data->param->end, &data->param->init);
 	if (data->id % 2)
 	{
 		pthread_mutex_unlock(data->right);
@@ -58,12 +59,13 @@ void	*routine(void	*param)
 	t_thread_data	*data;
 
 	data = param;
-	gettimeofday(&data->init, NULL);
+	gettimeofday(&data->param->init, NULL);
+	gettimeofday(&data->param->end, NULL);
 	while (data->param->alive)
 	{
 		eating(data);
 		data->times_eat++;
-		if (data->times_eat == data->param->n_eat)
+		if (data->times_eat == data->param->n_eat && data->param->alive)
 		{
 			printf("Filosofo %d ha terminado\n", data->id);
 			break;

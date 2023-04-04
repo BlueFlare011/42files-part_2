@@ -7,7 +7,7 @@ SRCS	=	philo.c\
 
 CC		=	gcc
 
-CFLAGS	=	-Wall -Wextra -Werror -g
+CFLAGS	=	-Wall -Wextra -Werror
 
 OBJS	=	$(SRCS:.c=.o)
 

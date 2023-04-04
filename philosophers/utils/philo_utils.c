@@ -11,8 +11,7 @@ void smartPrint(char *message, t_thread_data *data)
 	pthread_mutex_lock(data->param->w_alive);
 	if (data->param->alive)
 	{
-		gettimeofday(&data->end, NULL);
-		printf("%ums %d %s\n", getTime(&data->end, &data->init), data->id, message);
+		printf("%ums %d %s\n", getTime(&data->param->end, &data->param->init), data->id, message);
 	}
 	pthread_mutex_unlock(data->param->w_alive);
 }

@@ -4,18 +4,22 @@ void manageProgram(t_const_data *data, t_thread_data *t_data)
 {
 	int	i;
 
-	i = 0;
-	usleep(100);
-	while (1)
+	while (data->alive && data->n_eat != t_data->times_eat)
 	{
+		i = 0;
 		while (i < data->num_philo)
 		{
-			if (getTime(&t_data[i].end, &t_data[i].init) >= (unsigned int)data->t_die)
+			gettimeofday(&data->end, NULL);
+			if (getTime(&data->end, &data->init) >= (unsigned int)(t_data[i].last_meal + data->t_die) && data->alive)
 			{
-				
+				pthread_mutex_lock(data->w_alive);
+				data->alive = 0;
+				printf("%ums %d died\n", getTime(&data->end, &data->init), t_data[i].id);
+				pthread_mutex_unlock(data->w_alive);
 			}
 			i++;
 		}
+		usleep(200);
 	}
 }
 

@@ -1,19 +1,31 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   error.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: socana-b <socana-b@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/04/05 09:52:49 by socana-b          #+#    #+#             */
+/*   Updated: 2023/04/05 09:53:36 by socana-b         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo.h"
 
-int	argError(char **args)
+int	arg_error(char **args)
 {
 	int	i;
 	int	aux;
 
 	i = 1;
-	while (args[i] && aux)	// Recorremos todos los argumentos
+	while (args[i] && aux)
 	{
-		aux = ft_atoi(args[i]);	// Comprobamos con atoi y unaa variable auxiliar que todos los argumentos son mayores a 0
+		aux = ft_atoi(args[i]);
 		if (aux >= 0)
 			aux = 1;
 		else
 			aux = 0;
 		i++;
 	}
-	return (!aux);	//Retorna 0 si todo esta correcto o 1 si no (la variable aux se invierte)
+	return (!aux);
 }

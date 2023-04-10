@@ -6,7 +6,7 @@
 /*   By: socana-b <socana-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 09:52:45 by socana-b          #+#    #+#             */
-/*   Updated: 2023/04/05 10:34:43 by socana-b         ###   ########.fr       */
+/*   Updated: 2023/04/10 12:50:10 by socana-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	manage_program(t_const_data *data, t_thread_data *t_data)
 		while (i < data->num_philo)
 		{
 			gettimeofday(&data->end, NULL);
-			if (get_time(&data->end, &data->init) >= (unsigned int)
+			if (get_time(&data->end, &data->init) > (unsigned int)
 				(t_data[i].last_meal + data->t_die) && data->alive)
 			{
 				pthread_mutex_lock(data->w_alive);

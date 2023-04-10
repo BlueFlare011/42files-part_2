@@ -6,7 +6,7 @@
 /*   By: socana-b <socana-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 09:52:42 by socana-b          #+#    #+#             */
-/*   Updated: 2023/04/05 10:37:29 by socana-b         ###   ########.fr       */
+/*   Updated: 2023/04/10 12:11:22 by socana-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,16 +40,19 @@ void	set_the_table2(t_const_data *param, t_thread_data *t_data,
 	{
 		t_data[i].id = i + 1;
 		t_data[i].param = param;
-		t_data[i].left = &forks[0];
-		t_data[i].right = &forks[param->num_philo - 1];
+		if (i == param->num_philo - 1)
+		{
+			t_data[i].left = &forks[0];
+			t_data[i].right = &forks[i];
+		}
+		else
+		{
+			t_data[i].left = &forks[i + 1];
+			t_data[i].right = &forks[i];
+		}
 		t_data[i].times_eat = 0;
 		t_data[i].time_aux = 0;
 		t_data[i].last_meal = 0;
-		if (i != 0)
-		{
-			t_data[i].left = &forks[i];
-			t_data[i].right = &forks[i - 1];
-		}
 		i++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: socana-b <socana-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 09:52:39 by socana-b          #+#    #+#             */
-/*   Updated: 2023/04/05 10:42:14 by socana-b         ###   ########.fr       */
+/*   Updated: 2023/04/10 12:41:04 by socana-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,28 +27,17 @@ void	sleeping(t_thread_data *data)
 
 void	grab_forks(t_thread_data *data)
 {
-	usleep(70);
-	if (data->id % 2)
-	{
-		pthread_mutex_lock(data->left);
-		smart_print("has taken a fork(left)", data);
-		pthread_mutex_lock(data->right);
-		smart_print("has taken a fork(right)", data);
-	}
-	else
-	{
-		pthread_mutex_lock(data->right);
-		smart_print("has taken a fork(right)", data);
-		pthread_mutex_lock(data->left);
-		smart_print("has taken a fork(left)", data);
-	}
+	usleep(100);
+	pthread_mutex_lock(data->right);
+	smart_print("has taken a fork(right)", data);
+	pthread_mutex_lock(data->left);
+	smart_print("has taken a fork(left)", data);
 	data->time_aux = get_time(&data->param->end, &data->param->init);
 }
 
 void	eating(t_thread_data *data)
 {	
 	grab_forks(data);
-	data->last_meal = get_time(&data->param->end, &data->param->init);
 	smart_print("is eating", data);
 	while (get_time(&data->param->end, &data->param->init)
 		- data->time_aux < (unsigned int)data->param->t_eat)
@@ -57,17 +46,10 @@ void	eating(t_thread_data *data)
 			break ;
 		usleep(50);
 	}
+	data->last_meal = get_time(&data->param->end, &data->param->init);
 	data->time_aux = get_time(&data->param->end, &data->param->init);
-	if (data->id % 2)
-	{
-		pthread_mutex_unlock(data->right);
-		pthread_mutex_unlock(data->left);
-	}
-	else
-	{
-		pthread_mutex_unlock(data->left);
-		pthread_mutex_unlock(data->right);
-	}
+	pthread_mutex_unlock(data->right);
+	pthread_mutex_unlock(data->left);
 }
 
 void	*routine(void	*param)

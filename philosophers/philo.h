@@ -6,7 +6,7 @@
 /*   By: socana-b <socana-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 09:52:30 by socana-b          #+#    #+#             */
-/*   Updated: 2023/04/05 10:14:00 by socana-b         ###   ########.fr       */
+/*   Updated: 2023/04/14 11:52:00 by socana-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,14 +44,13 @@ typedef struct s_thread_data
 }t_thread_data;
 
 int				ft_atoi(const char *str);
-int				arg_error(char **args);
+int				arg_error(char **args, int argc);
 void			create_const_struct(t_const_data *data,
 					int length, char **args, pthread_mutex_t *mutPrint);
 int				set_the_table(t_const_data *param, t_thread_data **t_data,
 					pthread_mutex_t **forks, pthread_t **philos);
 void			*routine(void	*param);
 unsigned int	get_time(struct timeval *end, struct timeval *init);
-unsigned int	get_simple_time(struct timeval *end, struct timeval *init);
 void			smart_print(char *message, t_thread_data *data);
 
 #endif

@@ -6,11 +6,25 @@
 /*   By: socana-b <socana-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 09:52:45 by socana-b          #+#    #+#             */
-/*   Updated: 2023/04/10 12:50:10 by socana-b         ###   ########.fr       */
+/*   Updated: 2023/04/14 12:19:45 by socana-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+void	c_cleaner(t_const_data	*data, t_thread_data *t_data,
+					pthread_mutex_t *forks, pthread_t *philos)
+{
+	int	i;
+
+	i = 0;
+	while (i < data->num_philo)
+		pthread_mutex_destroy(&forks[i++]);
+	pthread_mutex_destroy(data->w_alive);
+	free(forks);
+	free(philos);
+	free(t_data);
+}
 
 int	check_diet(t_const_data *data, t_thread_data *t_data)
 {
@@ -50,12 +64,14 @@ void	manage_program(t_const_data *data, t_thread_data *t_data)
 	}
 }
 
-void	create_philos(t_const_data *data,
-			t_thread_data *t_data, pthread_t *philos)
+void	create_philos(t_const_data *data, t_thread_data *t_data,
+						pthread_t *philos)
 {
 	int	i;
 
 	i = 0;
+	gettimeofday(&data->init, NULL);
+	gettimeofday(&data->end, NULL);
 	while (i < data->num_philo)
 	{
 		pthread_create(&philos[i], NULL, routine, (void *)&t_data[i]);
@@ -64,14 +80,8 @@ void	create_philos(t_const_data *data,
 	}
 	manage_program(data, t_data);
 	i = 0;
-	if (data->num_philo == 1)
-		exit(1);
 	while (i < data->num_philo)
 		pthread_join(philos[i++], NULL);
-	i = 0;
-	while (i < data->num_philo)
-		pthread_mutex_destroy(t_data[i++].left);
-	pthread_mutex_destroy(data->w_alive);
 }
 
 int	main(int argc, char **argv)
@@ -82,14 +92,15 @@ int	main(int argc, char **argv)
 	pthread_mutex_t	mut_alive;
 	pthread_t		*philos;
 
-	if ((argc > 6 && argc < 5) && arg_error(argv))
+	if (arg_error(argv, argc))
+	{
+		write(2, "Error: Los argumentos dados son erroneos\n", 41);
 		return (1);
+	}
 	pthread_mutex_init(&mut_alive, NULL);
 	create_const_struct(&param, argc - 1, argv, &mut_alive);
 	set_the_table(&param, &t_data, &forks, &philos);
 	create_philos(&param, t_data, philos);
-	free(forks);
-	free(philos);
-	free(t_data);
+	c_cleaner(&param, t_data, forks, philos);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: socana-b <socana-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 09:52:39 by socana-b          #+#    #+#             */
-/*   Updated: 2023/04/14 12:42:43 by socana-b         ###   ########.fr       */
+/*   Updated: 2023/04/18 12:19:12 by socana-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	sleeping(t_thread_data *data)
 	{
 		if (!data->param->alive)
 			break ;
-		usleep(80);
+		usleep(100);
 	}
 	data->time_aux = get_time(&data->param->end, &data->param->init);
 }
@@ -28,22 +28,24 @@ void	sleeping(t_thread_data *data)
 void	grab_forks(t_thread_data *data)
 {
 	usleep(100);
-	smart_print("has taken a fork(right)", data);
+	
 	if (data->param->num_philo == 1)
 	{
+		smart_print("has taken a fork(right)", data);
 		while (get_time(&data->param->end, &data->param->init)
 			- data->time_aux <= (unsigned int)data->param->t_die)
 		{
 			if (!data->param->alive)
 				break ;
-			usleep(80);
+			usleep(100);
 		}
 		data->time_aux = get_time(&data->param->end, &data->param->init);
 		return ;
 	}
 	pthread_mutex_lock(data->right);
-	smart_print("has taken a fork(left)", data);
+	smart_print("has taken a fork(right)", data);
 	pthread_mutex_lock(data->left);
+	smart_print("has taken a fork(left)", data);
 	data->time_aux = get_time(&data->param->end, &data->param->init);
 }
 
@@ -56,7 +58,7 @@ void	eating(t_thread_data *data)
 	{
 		if (!data->param->alive)
 			break ;
-		usleep(80);
+		usleep(100);
 	}
 	data->last_meal = get_time(&data->param->end, &data->param->init);
 	data->time_aux = get_time(&data->param->end, &data->param->init);

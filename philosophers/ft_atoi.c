@@ -6,11 +6,11 @@
 /*   By: socana-b <socana-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 09:52:55 by socana-b          #+#    #+#             */
-/*   Updated: 2023/04/05 10:37:54 by socana-b         ###   ########.fr       */
+/*   Updated: 2023/07/14 17:20:20 by socana-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../philo.h"
+#include "philo.h"
 
 static int	ft_isdigit(char num)
 {

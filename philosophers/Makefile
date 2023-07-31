@@ -2,8 +2,8 @@ SRCS	=	philo.c\
 			error.c\
 			threadReady.c\
 			routine.c\
-			utils/ft_atoi.c\
-			utils/philo_utils.c
+			ft_atoi.c\
+			philo_utils.c
 
 CC		=	gcc
 

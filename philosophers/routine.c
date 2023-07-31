@@ -6,7 +6,7 @@
 /*   By: socana-b <socana-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 09:52:39 by socana-b          #+#    #+#             */
-/*   Updated: 2023/04/18 12:19:12 by socana-b         ###   ########.fr       */
+/*   Updated: 2023/07/31 07:51:40 by socana-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,16 @@ void	sleeping(t_thread_data *data)
 	{
 		if (!data->param->alive)
 			break ;
-		usleep(100);
+		usleep(80);
 	}
 	data->time_aux = get_time(&data->param->end, &data->param->init);
 }
 
 void	grab_forks(t_thread_data *data)
 {
-	usleep(100);
-	
+	if (data->id != 1)
+		usleep(40);
+	usleep(80);
 	if (data->param->num_philo == 1)
 	{
 		smart_print("has taken a fork(right)", data);
@@ -37,7 +38,7 @@ void	grab_forks(t_thread_data *data)
 		{
 			if (!data->param->alive)
 				break ;
-			usleep(100);
+			usleep(80);
 		}
 		data->time_aux = get_time(&data->param->end, &data->param->init);
 		return ;
@@ -58,7 +59,7 @@ void	eating(t_thread_data *data)
 	{
 		if (!data->param->alive)
 			break ;
-		usleep(100);
+		usleep(80);
 	}
 	data->last_meal = get_time(&data->param->end, &data->param->init);
 	data->time_aux = get_time(&data->param->end, &data->param->init);

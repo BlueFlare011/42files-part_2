@@ -6,7 +6,7 @@
 /*   By: socana-b <socana-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 09:52:45 by socana-b          #+#    #+#             */
-/*   Updated: 2023/04/14 12:19:45 by socana-b         ###   ########.fr       */
+/*   Updated: 2023/07/31 09:30:30 by socana-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ void	manage_program(t_const_data *data, t_thread_data *t_data)
 			}
 			i++;
 		}
+		usleep(50);
 	}
 }
 
@@ -74,8 +75,9 @@ void	create_philos(t_const_data *data, t_thread_data *t_data,
 	gettimeofday(&data->end, NULL);
 	while (i < data->num_philo)
 	{
+		gettimeofday(&data->end, NULL);
 		pthread_create(&philos[i], NULL, routine, (void *)&t_data[i]);
-		usleep(50);
+		usleep(60);
 		i++;
 	}
 	manage_program(data, t_data);

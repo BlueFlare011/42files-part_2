@@ -6,11 +6,11 @@
 /*   By: socana-b <socana-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 09:52:52 by socana-b          #+#    #+#             */
-/*   Updated: 2023/04/05 10:39:08 by socana-b         ###   ########.fr       */
+/*   Updated: 2023/07/14 17:20:35 by socana-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../philo.h"
+#include "philo.h"
 
 unsigned int	get_time(struct timeval *end, struct timeval *init)
 {

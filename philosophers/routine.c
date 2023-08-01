@@ -6,7 +6,7 @@
 /*   By: socana-b <socana-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 09:52:39 by socana-b          #+#    #+#             */
-/*   Updated: 2023/07/31 07:51:40 by socana-b         ###   ########.fr       */
+/*   Updated: 2023/08/01 17:21:07 by socana-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,8 @@ void	sleeping(t_thread_data *data)
 
 void	grab_forks(t_thread_data *data)
 {
-	if (data->id != 1)
-		usleep(40);
-	usleep(80);
+	if (data->id == 2)
+		usleep(80);
 	if (data->param->num_philo == 1)
 	{
 		smart_print("has taken a fork(right)", data);

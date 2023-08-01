@@ -6,7 +6,7 @@
 /*   By: socana-b <socana-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 09:52:45 by socana-b          #+#    #+#             */
-/*   Updated: 2023/07/31 09:30:30 by socana-b         ###   ########.fr       */
+/*   Updated: 2023/08/01 17:26:18 by socana-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,10 +71,9 @@ void	create_philos(t_const_data *data, t_thread_data *t_data,
 	int	i;
 
 	i = 0;
-	gettimeofday(&data->init, NULL);
-	gettimeofday(&data->end, NULL);
 	while (i < data->num_philo)
 	{
+		gettimeofday(&data->init, NULL);
 		gettimeofday(&data->end, NULL);
 		pthread_create(&philos[i], NULL, routine, (void *)&t_data[i]);
 		usleep(60);

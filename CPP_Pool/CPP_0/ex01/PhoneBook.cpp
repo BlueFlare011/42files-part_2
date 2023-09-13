@@ -1,6 +1,6 @@
 #include "PhoneBook.hpp"
 
-PhoneBook::PhoneBook(Contact contact[MAX_LEN])
+PhoneBook::PhoneBook(void)
 {
 	std::cout << "PhoneBook create" << std::endl;
 }
@@ -10,29 +10,37 @@ PhoneBook::~PhoneBook(void)
 	std::cout << "PhoneBook destroyed" << std::endl;
 }
 
-void	addContact(void)
+void PhoneBook::addContact(int *i)
 {
-	std::string	firstName;
-	std::string	lastName;
-	std::string	nickname;
-	std::string	phoneNumber;
-	std::string	darckestSecret;
-
-	std::cout << "First Name: ";
-	std::cin >> firstName;
-	std::cout << "Last Name: ";
-	std::cin >> lastName;
-	std::cout << "Nickname: ";
-	std::cin >> nickname;
-	std::cout << "Phone Number: ";
-	std::cin >> phoneNumber;
-	std::cout << "Secret: ";
-	std::cin >> darckestSecret;	
-	Contact c_aux(firstName, lastName, nickname, phoneNumber, darckestSecret);
-	this->contact[0] = c_aux;
+	if (*i == 8)
+		*i = 0;
+	if (!this->contact[*i].createContact()){
+		std::cerr << "Contact not registered: Empty field detected" << std::endl;
+		(*i)--;
+	}
 }
 
-void	searchContact(void)
+void	PhoneBook::searchContact(int limit)
 {
+	int	i = 0;
+	int	index;
 
+	if (limit == 0){
+		std::cout << "Error: PhoneBook is empty" << std::endl;
+		return ;
+	}
+	std::cout << "     index" << "|" << "first name" << "|" << " last name" << "|" << "  Nickname" << std::endl;
+	while (i < limit)
+	{
+		this->contact[i].parseContact(i);
+		i++;
+	}
+	std::cout << "Introduce index of a contact to see all the information abaout" << std::endl << "> ";
+	std::cin >> index;
+	while (index >= 0 && index < limit)
+	{
+		std::cerr << "Index is invalid, try again" << std::endl << "> ";
+		std::cin >> index;
+	}
+	this->contact[index].printContact();
 }

@@ -10,10 +10,13 @@ class Contact
 		std::string	lastName;
 		std::string	nickname;
 		std::string	phoneNumber;
-		std::string	darckestSecret;
+		std::string	darkestSecret;
 	public:
-		Contact(std::string firstName, std::string lastName, std::string nickname, std::string phoneNumber, std::string darckestSecret);
+		Contact(void);
 		~Contact(void);
+		bool	createContact(void);
+		void	parseContact(int i);
+		void	printContact(void);
 };
 
 #endif

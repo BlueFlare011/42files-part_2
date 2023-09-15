@@ -29,7 +29,7 @@ void	PhoneBook::searchContact(int limit)
 		std::cout << "Error: PhoneBook is empty" << std::endl;
 		return ;
 	}
-	std::cout << "     index" << "|" << "first name" << "|" << " last name" << "|" << "  Nickname" << std::endl;
+	std::cout << "     INDEX" << "|" << "FIRST NAME" << "|" << " LAST NAME" << "|" << "  NICKNAME" << std::endl;
 	while (i < limit)
 	{
 		this->contact[i].parseContact(i);
@@ -37,7 +37,7 @@ void	PhoneBook::searchContact(int limit)
 	}
 	std::cout << "Introduce index of a contact to see all the information abaout" << std::endl << "> ";
 	std::cin >> index;
-	while (index >= 0 && index < limit)
+	while (index < 0 || index >= limit)
 	{
 		std::cerr << "Index is invalid, try again" << std::endl << "> ";
 		std::cin >> index;

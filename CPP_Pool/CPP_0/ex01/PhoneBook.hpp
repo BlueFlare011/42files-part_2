@@ -6,8 +6,9 @@
 
 class PhoneBook
 {
-	public:
+	private:
 		Contact contact[MAX_LEN];
+	public:
 		PhoneBook(void);
 		~PhoneBook(void);
 		void	addContact(int *i);

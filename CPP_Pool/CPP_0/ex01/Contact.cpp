@@ -1,14 +1,8 @@
 #include "Contact.hpp"
 
-Contact::Contact(void)
-{
-	std::cout << "Contact created" << std::endl;
-}
+Contact::Contact(void){}
 
-Contact::~Contact(void)
-{
-	std::cout << "Contact deleted" << std::endl;
-}
+Contact::~Contact(void){}
 
 std::string	repeatString(char letter, int length)
 {

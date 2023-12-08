@@ -1,14 +1,8 @@
 #include "PhoneBook.hpp"
 
-PhoneBook::PhoneBook(void)
-{
-	std::cout << "PhoneBook create" << std::endl;
-}
+PhoneBook::PhoneBook(void){}
 
-PhoneBook::~PhoneBook(void)
-{
-	std::cout << "PhoneBook destroyed" << std::endl;
-}
+PhoneBook::~PhoneBook(void){}
 
 void PhoneBook::addContact(int *i)
 {
@@ -35,11 +29,13 @@ void	PhoneBook::searchContact(int limit)
 		this->contact[i].parseContact(i);
 		i++;
 	}
-	std::cout << "Introduce index of a contact to see all the information abaout" << std::endl << "> ";
+	std::cout << "Introduce index of a contact to see all the information about." << std::endl << "> ";
 	std::cin >> index;
-	while (index < 0 || index >= limit)
+	while (index < 0 && index >= limit)
 	{
-		std::cerr << "Index is invalid, try again" << std::endl << "> ";
+		std::cin.clear();
+		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+		std::cerr << "Invalid index, try again" << std::endl << "> ";
 		std::cin >> index;
 	}
 	this->contact[index].printContact();

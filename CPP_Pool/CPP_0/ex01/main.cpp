@@ -2,10 +2,10 @@
 
 void	printMenu(void)
 {
-	std::cout << "What the fuck you want:" << std::endl;
-	std::cout << "1) Add contact(ADD):" << std::endl;
-	std::cout << "2) Search contact(SEARCH)" << std::endl;
-	std::cout << "3) Exit(EXIT)" << std::endl << "> ";
+	std::cout << "What do you want:" << std::endl;
+	std::cout << "1) Add contact (ADD):" << std::endl;
+	std::cout << "2) Search contact (SEARCH)" << std::endl;
+	std::cout << "3) Exit (EXIT)" << std::endl << "> ";
 }
 
 int main(void)
@@ -18,6 +18,7 @@ int main(void)
 	{
 		printMenu();
 		std::cin >> command;
+		std::cout << std::endl;
 		if (!command.compare("ADD")){
 			agenda.addContact(&i);
 			i++;

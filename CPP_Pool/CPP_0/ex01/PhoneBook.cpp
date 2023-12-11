@@ -4,13 +4,11 @@ PhoneBook::PhoneBook(void){}
 
 PhoneBook::~PhoneBook(void){}
 
-void PhoneBook::addContact(int *i)
+void PhoneBook::addContact(int i)
 {
-	if (*i == 8)
-		*i = 0;
-	if (!this->contact[*i].createContact()){
+	// Mejorar esta mierda
+	if (!this->contact[i].createContact()){
 		std::cerr << "Contact not registered: Empty field detected" << std::endl;
-		(*i)--;
 	}
 }
 
@@ -31,12 +29,13 @@ void	PhoneBook::searchContact(int limit)
 	}
 	std::cout << "Introduce index of a contact to see all the information about." << std::endl << "> ";
 	std::cin >> index;
-	while (index < 0 && index >= limit)
+	while (!std::cin.good() || (index < 0 || index >= limit)) // Que significa? y es necesario?
 	{
 		std::cin.clear();
-		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+		std::cin.ignore(1000, '\n');
 		std::cerr << "Invalid index, try again" << std::endl << "> ";
 		std::cin >> index;
 	}
+	std::cin.ignore(1000, '\n');
 	this->contact[index].printContact();
 }

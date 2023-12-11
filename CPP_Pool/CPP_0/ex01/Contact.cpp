@@ -19,23 +19,23 @@ std::string	repeatString(char letter, int length)
 bool	Contact::createContact(void)
 {
 	std::cout << "Introduce First Name:" << std::endl;
-	std::cin >> this->firstName;
+	std::getline(std::cin, this->firstName);
 	if (this->firstName.empty())
 		return false;
 	std::cout << "Introduce Last Name:" << std::endl;
-	std::cin >> this->lastName;
+	std::getline(std::cin, this->lastName);
 	if (this->lastName.empty())
 		return false;
 	std::cout << "Introduce Nickname:" << std::endl;
-	std::cin >> this->nickname;
+	std::getline(std::cin, this->nickname);
 	if (this->nickname.empty())
 		return false;
 	std::cout << "Introduce Phone Number:" << std::endl;
-	std::cin >> this->phoneNumber;
+	std::getline(std::cin, this->phoneNumber);
 	if (this->phoneNumber.empty())
 		return false;
 	std::cout << "Introduce a dark secret:" << std::endl;
-	std::cin >> this->darkestSecret;
+	std::getline(std::cin, this->darkestSecret);
 	if (this->darkestSecret.empty())
 		return false;
 	std::cout << "Contact added successfully" << std::endl;
@@ -87,5 +87,5 @@ void	Contact::printContact(void)
 	std::cout << "Last Name: " << this->lastName << std::endl;
 	std::cout << "Nickname: " << this->nickname << std::endl;
 	std::cout << "Phone Number: " << this->phoneNumber << std::endl;
-	std::cout << "Darkest Secret: " << this->darkestSecret << std::endl;
+	std::cout << "Darkest Secret: " << this->darkestSecret << std::endl << std::endl;
 }

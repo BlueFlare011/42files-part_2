@@ -17,10 +17,10 @@ int main(void)
 	while (1)
 	{
 		printMenu();
-		std::cin >> command;
+		std::getline(std::cin, command);
 		std::cout << std::endl;
 		if (!command.compare("ADD")){
-			agenda.addContact(&i);
+			agenda.addContact(i);
 			i++;
 		}
 		else if (!command.compare("SEARCH"))

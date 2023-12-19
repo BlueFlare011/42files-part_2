@@ -24,6 +24,9 @@ int main(void)
 			agenda.searchContact();
 		else if (!command.compare("EXIT"))
 			return 0;
+		if (std::cin.eof()){
+			return 0;
+		}
 	}
 	return 0;
 }

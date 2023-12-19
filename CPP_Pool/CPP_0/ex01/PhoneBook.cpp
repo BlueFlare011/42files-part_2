@@ -35,7 +35,7 @@ void	PhoneBook::searchContact(void)
 	}
 	std::cout << "Introduce index of a contact to see all the information about." << std::endl << "> ";
 	std::cin >> index;
-	while (!std::cin.good() || (index < 0 || index >= this->limit))
+	while ((!std::cin.good() || (index < 0 || index >= this->limit)) && !std::cin.eof())
 	{
 		std::cin.clear();
 		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
@@ -43,5 +43,6 @@ void	PhoneBook::searchContact(void)
 		std::cin >> index;
 	}
 	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-	this->contact[index].printContact();
+	if (!std::cin.eof())
+		this->contact[index].printContact();
 }

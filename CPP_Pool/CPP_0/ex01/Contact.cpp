@@ -8,23 +8,23 @@ bool	Contact::createContact(void)
 {
 	std::cout << "Introduce First Name:" << std::endl;
 	std::getline(std::cin, this->firstName);
-	if (this->firstName.empty())
+	if (this->firstName.empty() || std::cin.eof())
 		return false;
 	std::cout << "Introduce Last Name:" << std::endl;
 	std::getline(std::cin, this->lastName);
-	if (this->lastName.empty())
+	if (this->lastName.empty() || std::cin.eof())
 		return false;
 	std::cout << "Introduce Nickname:" << std::endl;
 	std::getline(std::cin, this->nickname);
-	if (this->nickname.empty())
+	if (this->nickname.empty() || std::cin.eof())
 		return false;
 	std::cout << "Introduce Phone Number:" << std::endl;
 	std::getline(std::cin, this->phoneNumber);
-	if (this->phoneNumber.empty())
+	if (this->phoneNumber.empty() || std::cin.eof())
 		return false;
 	std::cout << "Introduce a dark secret:" << std::endl;
 	std::getline(std::cin, this->darkestSecret);
-	if (this->darkestSecret.empty())
+	if (this->darkestSecret.empty() || std::cin.eof())
 		return false;
 	std::cout << "Contact added successfully" << std::endl;
 	return true;

@@ -1,41 +1,47 @@
 #include "PhoneBook.hpp"
 
-PhoneBook::PhoneBook(void){}
+PhoneBook::PhoneBook(void){
+	this->limit = 0;
+	this->index = 0;
+}
 
 PhoneBook::~PhoneBook(void){}
 
-void PhoneBook::addContact(int i)
+void PhoneBook::addContact(void)
 {
-	// Mejorar esta mierda
-	if (!this->contact[i].createContact()){
+	if (!this->contact[this->index % this->MAX_LEN].createContact()){
 		std::cerr << "Contact not registered: Empty field detected" << std::endl;
+	}else{
+		if (this->limit < this->MAX_LEN)
+			this->limit++;
+		this->index++;
 	}
 }
 
-void	PhoneBook::searchContact(int limit)
+void	PhoneBook::searchContact(void)
 {
 	int	i = 0;
 	int	index;
 
-	if (limit == 0){
+	if (this->limit == 0){
 		std::cout << "Error: PhoneBook is empty" << std::endl;
 		return ;
 	}
 	std::cout << "     INDEX" << "|" << "FIRST NAME" << "|" << " LAST NAME" << "|" << "  NICKNAME" << std::endl;
-	while (i < limit)
+	while (i < this->limit)
 	{
 		this->contact[i].parseContact(i);
 		i++;
 	}
 	std::cout << "Introduce index of a contact to see all the information about." << std::endl << "> ";
 	std::cin >> index;
-	while (!std::cin.good() || (index < 0 || index >= limit)) // Que significa? y es necesario?
+	while (!std::cin.good() || (index < 0 || index >= this->limit))
 	{
 		std::cin.clear();
-		std::cin.ignore(1000, '\n');
+		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 		std::cerr << "Invalid index, try again" << std::endl << "> ";
 		std::cin >> index;
 	}
-	std::cin.ignore(1000, '\n');
+	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 	this->contact[index].printContact();
 }

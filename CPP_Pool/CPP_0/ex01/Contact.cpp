@@ -4,18 +4,6 @@ Contact::Contact(void){}
 
 Contact::~Contact(void){}
 
-std::string	repeatString(char letter, int length)
-{
-	std::string result = "";
-	int			i = 0;
-
-	while (i < length){
-		result.push_back(letter);
-		i++;
-	}
-	return (result);
-}
-
 bool	Contact::createContact(void)
 {
 	std::cout << "Introduce First Name:" << std::endl;
@@ -48,37 +36,30 @@ void	Contact::parseContact(int i)
 	std::string	fname;
 	std::string	lname;
 	std::string	nick;
-	size_t		length;
 
 	index = "         " + std::to_string(i);
-	length = this->firstName.length();
-	if (length > 10){
-
+	std::cout << index << "|";
+	fname = this->firstName;
+	if (this->firstName.length() > 10){
 		fname = this->firstName.substr(0, 10);
 		fname[9] = '.';
-	}else{
-		fname = repeatString(' ', 10 - length);
-		fname.append(this->firstName);
 	}
-	length = this->lastName.length();
-	if (length > 10){
-
+	std::cout << std::setfill(' ') << std::setw (10);
+	std::cout << fname << "|";
+	lname = this->lastName;
+	if (this->lastName.length() > 10){
 		lname = this->lastName.substr(0, 10);
 		lname[9] = '.';
-	}else{
-		lname = repeatString(' ', 10 - length);
-		lname.append(this->lastName);
 	}
-	length = this->nickname.length();
-	if (length > 10){
-
+	std::cout << std::setfill(' ') << std::setw (10);
+	std::cout << lname << "|";
+	nick = this->nickname;
+	if (this->nickname.length() > 10){
 		nick = this->nickname.substr(0, 10);
 		nick[9] = '.';
-	}else{
-		nick = repeatString(' ', 10 - length);
-		nick.append(this->nickname);
 	}
-	std::cout << index << "|" << fname << "|" << lname << "|" << nick << std::endl;
+	std::cout << std::setfill(' ') << std::setw (10);
+	std::cout << nick << std::endl;
 }
 
 void	Contact::printContact(void)

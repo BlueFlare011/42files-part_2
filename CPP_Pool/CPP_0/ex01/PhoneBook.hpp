@@ -2,17 +2,19 @@
 # define PHONEBOOK_HPP
 
 # include "Contact.hpp"
-# define MAX_LEN 8
 
 class PhoneBook
 {
 	private:
-		Contact contact[MAX_LEN];
+		static const int MAX_LEN = 8;
+		Contact contact[8];
+		int		limit;
+		int		index;
 	public:
 		PhoneBook(void);
 		~PhoneBook(void);
-		void	addContact(int i);
-		void	searchContact(int limit);
+		void	addContact(void);
+		void	searchContact(void);
 };
 
 #endif

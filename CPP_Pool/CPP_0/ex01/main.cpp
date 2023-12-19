@@ -12,19 +12,16 @@ int main(void)
 {
 	PhoneBook	agenda;
 	std::string	command;
-	int			i = 0;
 
 	while (1)
 	{
 		printMenu();
 		std::getline(std::cin, command);
 		std::cout << std::endl;
-		if (!command.compare("ADD")){
-			agenda.addContact(i);
-			i++;
-		}
+		if (!command.compare("ADD"))
+			agenda.addContact();
 		else if (!command.compare("SEARCH"))
-			agenda.searchContact(i);
+			agenda.searchContact();
 		else if (!command.compare("EXIT"))
 			return 0;
 	}

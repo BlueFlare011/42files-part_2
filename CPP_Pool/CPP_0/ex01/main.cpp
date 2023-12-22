@@ -25,6 +25,7 @@ int main(void)
 		else if (!command.compare("EXIT"))
 			return 0;
 		if (std::cin.eof()){
+			std::cerr << "EOF detected, exiting..." << std::endl;
 			return 0;
 		}
 	}

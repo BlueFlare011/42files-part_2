@@ -1,5 +1,4 @@
-SRCS	=	randomChump.cpp \
-			newZombie.cpp \
+SRCS	=	zombieHorde.cpp \
 			Zombie.cpp \
 			main.cpp
 

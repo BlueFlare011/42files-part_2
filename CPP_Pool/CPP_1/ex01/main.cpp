@@ -2,6 +2,10 @@
 
 int main()
 {
-	Zombie *horde = zombieHorde(10, "Filipo");
+	Zombie *horde = zombieHorde(MAX, "Filipo");
+	int i;
+	for (i = 0; i < MAX;i++)
+		horde[i].announce();
+	
 	return (0);
 }

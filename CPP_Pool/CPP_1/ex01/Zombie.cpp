@@ -5,6 +5,8 @@ Zombie::Zombie(std::string name)
 	this->name = name;
 }
 
+Zombie::Zombie(void){}
+
 Zombie::~Zombie(void)
 {
 	std::cout << this->name << " has been deleted" << std::endl;

@@ -1,6 +1,4 @@
-SRCS	=	zombieHorde.cpp \
-			Zombie.cpp \
-			main.cpp
+SRCS	=	main.cpp
 
 CC		=	c++
 
@@ -8,7 +6,7 @@ CFLAGS	=	-Wall -Wextra -Werror -std=c++98 -fsanitize=address
 
 OBJS	=	$(SRCS:.cpp=.o)
 
-NAME	=	zombie
+NAME	=	ex03
 
 RM		=	rm -f
 

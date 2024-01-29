@@ -69,6 +69,8 @@
 		"mutex": "cpp",
 		"ratio": "cpp",
 		"sstream": "cpp",
-		"iomanip": "cpp"
+		"iomanip": "cpp",
+		"numbers": "cpp",
+		"cinttypes": "cpp"
 	}
 }

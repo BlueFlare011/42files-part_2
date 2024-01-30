@@ -9,7 +9,7 @@ CFLAGS	=	-Wall -Wextra -Werror -std=c++98 -g -fsanitize=address
 
 OBJS	=	$(SRCS:.cpp=.o)
 
-NAME	=	algo
+NAME	=	violencia
 
 RM		=	rm -f
 

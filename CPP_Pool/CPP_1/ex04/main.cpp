@@ -1,22 +1,19 @@
 #include <iostream>
-#include <fstream> 
-#include <string.h>
+#include <fstream>
 
-void replace(std::string outLine, char *substr, int start, int end)
+std::string replace(std::string strOrigin, std::string strNew, std::string outLine)
 {
-	int j = 0;
-	while (j < strlen(substr) && j < end){
-		outLine[start + j] = substr[j];
-	}
-	if (j < end){
-		outLine.resize(outLine.length() + (end - j));
-		while (j < end){
-			char aux = outLine[start + j];
-			outLine[start + j] = substr[j];
+	size_t	pos = 0;
+	size_t	aux = 0;
+	while (pos != std::string::npos) {
+		pos = outLine.find(strOrigin, aux);
+		if (pos != std::string::npos) {
+			outLine.erase(pos, strOrigin.length());
+			outLine.insert(pos, strNew);
+			aux = pos + strNew.length();
 		}
-	}else{
-		outLine.erase(start + j, start + end);
 	}
+	return (outLine);
 }
 
 int main(int argc, char **argv)
@@ -25,22 +22,32 @@ int main(int argc, char **argv)
 		std::cerr << "Error: Wrong number of arguments" << std::endl;
 		return 1;
 	}
-	std::string auxLine;
+
+	std::string	strOrigin = argv[2];
+	std::string	strNew = argv[3];
+	std::string file = argv[1];
 	std::string outLine;
 	std::ifstream Reader(argv[1]);
-	std::string outfile = argv[1];
-	std::ofstream Writer(outfile.append(".replace"));
+	std::ofstream Writer(file.append(".replace"));
 
-	while (getline(Reader, auxLine)) {
-		outLine = auxLine;
-		for (int i = 0; i < auxLine.length(); i++){
-			if (!auxLine.compare(i, strlen(argv[2]), argv[2])){
-				replace(outLine, argv[3], i, strlen(argv[2]));
-				std::cout << outLine << std::endl;
-			}
-		}
-		Writer << outLine;
+	if (strNew.empty() || strOrigin.empty()){
+		std::cerr << "Error: " << "Args must be filled" << std::endl;
+		Writer.close();
+		Reader.close();
+		return 1;
+	}
+	if (!Writer.is_open() || !Reader.is_open()){
+		std::cerr << "Error: " << "Error creating opening files" << std::endl;
+		Writer.close();
+		Reader.close();
+		return 1;
+	}
+	while (getline(Reader, outLine)) {
+		outLine = replace(strOrigin, strNew, outLine);
+		//std::cout << outLine << std::endl; // Mandar esta linea a la puta...
+		Writer << outLine << std::endl;
 	}
 	Writer.close();
 	Reader.close();
+	return 0;
 }

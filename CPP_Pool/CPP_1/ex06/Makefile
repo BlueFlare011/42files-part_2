@@ -1,4 +1,5 @@
-SRCS	=	main.cpp
+SRCS	=	main.cpp \
+			Harl.cpp
 
 CC		=	c++
 
@@ -6,7 +7,7 @@ CFLAGS	=	-Wall -Wextra -Werror -std=c++98
 
 OBJS	=	$(SRCS:.cpp=.o)
 
-NAME	=	sed
+NAME	=	harlFilter
 
 RM		=	rm -f
 

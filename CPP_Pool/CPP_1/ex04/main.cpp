@@ -27,24 +27,31 @@ int main(int argc, char **argv)
 	std::string	strNew = argv[3];
 	std::string file = argv[1];
 	std::string outLine;
-	std::ifstream Reader(argv[1]);
-	std::ofstream Writer(file.append(".replace"));
-
+	
 	if (strNew.empty() || strOrigin.empty()){
 		std::cerr << "Error: " << "Args must be filled" << std::endl;
+		return 1;
+	}
+	
+	std::ifstream Reader(argv[1]);
+	
+	if (!Reader.is_open()){
+		std::cerr << "Error: " << "Couldn't opening '" << file << "'" << std::endl;
+		Reader.close();
+		return 1;
+	}
+	
+	std::ofstream Writer(file.append(".replace"));
+
+	if (!Writer.is_open()){
+		std::cerr << "Error: " << "Couldn't create '" << file.append(".replace") << "'"<< std::endl;
 		Writer.close();
 		Reader.close();
 		return 1;
 	}
-	if (!Writer.is_open() || !Reader.is_open()){
-		std::cerr << "Error: " << "Error creating opening files" << std::endl;
-		Writer.close();
-		Reader.close();
-		return 1;
-	}
+	
 	while (getline(Reader, outLine)) {
 		outLine = replace(strOrigin, strNew, outLine);
-		//std::cout << outLine << std::endl; // Mandar esta linea a la puta...
 		Writer << outLine << std::endl;
 	}
 	Writer.close();

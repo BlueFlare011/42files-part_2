@@ -2,14 +2,12 @@
 # define ZOMBIE_HPP
 
 # include <iostream>
-# define MAX 10
 
 class Zombie
 {
 	private:
 		std::string	name;
 	public:
-		Zombie(std::string name);
 		Zombie(void);
 		~Zombie(void);
 		void	setName(std::string name);

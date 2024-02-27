@@ -2,7 +2,7 @@
 
 void	randomChump(std::string name)
 {
-	Zombie	myZombie(name);	// Alloc in stack
+	Zombie	myZombie(name);
 
 	myZombie.announce();
 }

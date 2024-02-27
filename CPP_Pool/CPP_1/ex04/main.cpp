@@ -19,7 +19,7 @@ std::string replace(std::string strOrigin, std::string strNew, std::string outLi
 int main(int argc, char **argv)
 {
 	if (argc != 4){
-		std::cerr << "Error: Wrong number of arguments" << std::endl;
+		std::cout << "Error: Wrong number of arguments" << std::endl;
 		return 1;
 	}
 
@@ -29,14 +29,14 @@ int main(int argc, char **argv)
 	std::string outLine;
 	
 	if (strNew.empty() || strOrigin.empty()){
-		std::cerr << "Error: " << "Args must be filled" << std::endl;
+		std::cout << "Error: " << "Args must be filled" << std::endl;
 		return 1;
 	}
 	
 	std::ifstream Reader(argv[1]);
 	
 	if (!Reader.is_open()){
-		std::cerr << "Error: " << "Couldn't opening '" << file << "'" << std::endl;
+		std::cout << "Error: " << "Couldn't opening '" << file << "'" << std::endl;
 		Reader.close();
 		return 1;
 	}
@@ -44,7 +44,7 @@ int main(int argc, char **argv)
 	std::ofstream Writer(file.append(".replace"));
 
 	if (!Writer.is_open()){
-		std::cerr << "Error: " << "Couldn't create '" << file.append(".replace") << "'"<< std::endl;
+		std::cout << "Error: " << "Couldn't create '" << file.append(".replace") << "'"<< std::endl;
 		Writer.close();
 		Reader.close();
 		return 1;

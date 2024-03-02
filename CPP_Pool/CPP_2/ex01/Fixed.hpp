@@ -2,6 +2,7 @@
 # define FIXED_HPP
 
 #include <iostream>
+#include <cmath>
 
 class Fixed
 {
@@ -9,8 +10,8 @@ private:
 	int point;
 	const static int bits = 8;
 public:
-	Fixed(int point);
-	Fixed(float point);
+	Fixed(const int point);
+	Fixed(const float point);
 	Fixed();
 	Fixed(const Fixed& fixed);
 	Fixed & operator = (const Fixed& fixed);

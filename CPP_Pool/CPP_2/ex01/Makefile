@@ -7,7 +7,7 @@ CFLAGS	=	-Wall -Wextra -Werror -std=c++98 -g -fsanitize=address
 
 OBJS	=	$(SRCS:.cpp=.o)
 
-NAME	=	Fixed
+NAME	=	fixed
 
 RM		=	rm -f
 

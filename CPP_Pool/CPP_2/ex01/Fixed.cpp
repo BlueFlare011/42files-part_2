@@ -1,5 +1,14 @@
 #include "Fixed.hpp"
 
+Fixed::Fixed(int point)
+{
+	this->point = point;
+}
+
+Fixed::Fixed(float point)
+{
+	this->point = (int)point;
+}
 
 Fixed::Fixed()
 {
@@ -44,4 +53,8 @@ float Fixed::toFloat(void) const
 int Fixed::toInt(void) const
 {
 
+}
+
+std::ostream& operator<<(std::ostream &s, const Fixed &num){
+    return s << num.getRawBits();
 }

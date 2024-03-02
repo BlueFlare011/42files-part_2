@@ -1,5 +1,5 @@
 SRCS	=	main.cpp \
-			Fixed.cpp
+			ClapTrap.cpp
 
 CC		=	c++
 
@@ -7,7 +7,7 @@ CFLAGS	=	-Wall -Wextra -Werror -std=c++98 -g -fsanitize=address
 
 OBJS	=	$(SRCS:.cpp=.o)
 
-NAME	=	fixed
+NAME	=	claptrap
 
 RM		=	rm -f
 

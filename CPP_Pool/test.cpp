@@ -4,13 +4,10 @@
 
 int main()
 {
-	int bits = 8;
+	float f1 = 4.8f;
 
-	int value = 42.42 * (1 << bits);
-	int value2 = roundf(value);
-	std::cout << value << " " << value2 << std::endl;
-	
-	std::cout << value2 / (float )(1 << bits) << std::endl;
+	f1++;
+	std::cout << f1 << std::endl;
 
 	return 0;
 }

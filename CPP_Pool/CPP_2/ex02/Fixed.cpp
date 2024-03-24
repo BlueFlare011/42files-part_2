@@ -90,14 +90,12 @@ bool Fixed::operator != (const Fixed& fixed)
 
 Fixed Fixed::operator + (const Fixed& fixed)
 {
-	this->value += fixed.value;
-	return (*this);
+	return (Fixed(this->toFloat() + fixed.toFloat()));
 }
 
 Fixed Fixed::operator - (const Fixed& fixed)
 {
-	this->value -= fixed.value;
-	return (*this);
+	return (Fixed(this->toFloat() - fixed.toFloat()));
 }
 
 Fixed  Fixed::operator * (const Fixed& fixed)

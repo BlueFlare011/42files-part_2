@@ -1,7 +1,7 @@
-SRCS	=	main.cpp \
+SRCS	=	bsp.cpp \
 			Fixed.cpp \
 			Point.cpp \
-			bsp.cpp
+			main.cpp
 
 CC		=	c++
 

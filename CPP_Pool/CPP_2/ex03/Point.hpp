@@ -15,6 +15,9 @@ public:
 	Point(const Point & point);
 	Point& operator = (const Point & point);
 	~Point();
+	const Fixed&	getX(void) const;
+	const Fixed&	getY(void) const;
+	const float	getArea(Point & p1, Point & p2) const;
 };
 
 bool bsp(Point const a, Point const b, Point const c, Point const point);

@@ -11,24 +11,12 @@ Point::Point(const Point& point)
 
 Point& Point::operator = (const Point& point)
 {
-	// this->_x = point._x;
-	// this->_y = point._y;
 	return (*this);
 }
 
 Point::~Point() {}
 
-const Fixed&	Point::getX(void) const
-{
-	return (this->_x);
-}
-
-const Fixed&	Point::getY(void) const
-{
-	return (this->_y);
-}
-
-const float Point::getArea(Point & p1, Point & p2) const
+float Point::getArea(Point & p1, Point & p2) 
 {
 	float x1, y1, x2, y2, x3, y3;
 
@@ -39,7 +27,6 @@ const float Point::getArea(Point & p1, Point & p2) const
 	x3 = p2._x.toFloat();
 	y3 = p2._y.toFloat();
 
-	std::cout << x1 << " " << y1 << " " << x2 << " " << y2 << " " << x3 << " " << y3 << std::endl;
 
 	return (abs(x1*(y2-y3) + x2*(y3-y1)+ x3*(y1-y2))/2.0);
 }

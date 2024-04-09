@@ -11,7 +11,7 @@ ClapTrap::ClapTrap(std::string name)
 
 ClapTrap::ClapTrap(void)
 {
-	std::cout << "Defualt Constructor called" << std::endl;
+	std::cout << "Default Constructor called" << std::endl;
 	this->name = "something";
 	this->hitPoints = 10;
 	this->energyPoints = 10;
@@ -34,7 +34,7 @@ ClapTrap::ClapTrap (const ClapTrap & clapTrap)
 
 ClapTrap & ClapTrap::operator=(const ClapTrap & clapTrap)
 {
-	std::cout << "Copy Constructor called" << std::endl;
+	std::cout << "Copy Assignment Constructor called" << std::endl;
 	this->name = clapTrap.name;
 	this->hitPoints = clapTrap.hitPoints;
 	this->energyPoints = clapTrap.energyPoints;

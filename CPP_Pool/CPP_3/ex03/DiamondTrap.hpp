@@ -1,28 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   DiamondTrap.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: socana-b <socana-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/02 13:01:00 by socana-b          #+#    #+#             */
-/*   Updated: 2024/05/02 13:01:06 by socana-b         ###   ########.fr       */
+/*   Created: 2024/05/02 13:24:50 by socana-b          #+#    #+#             */
+/*   Updated: 2024/05/02 13:26:22 by socana-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Fixed.hpp"
+#ifndef DIAMONDTRAP_HPP
+# define DIAMONDTRAP_HPP
+
 #include <iostream>
+#include "FragTrap.hpp"
+#include "ScavTrap.hpp"
 
-int main( void )
+class DiamondTrap : public ClapTrap
 {
-	Fixed a;
-	Fixed b( a );
-	Fixed c;
+	public:
+		DiamondTrap(std::string name);
+		DiamondTrap();
+		DiamondTrap(const DiamondTrap & DiamondTrap);
+		~DiamondTrap();
+		DiamondTrap & operator=(const DiamondTrap & DiamondTrap);
+		void attack(const std::string & target);
+		void highFivesGuys(void);
+};
 
-	c = b;
-	
-	std::cout << a.getRawBits() << std::endl;
-	std::cout << b.getRawBits() << std::endl;
-	std::cout << c.getRawBits() << std::endl;
-	return 0;
-}
+#endif

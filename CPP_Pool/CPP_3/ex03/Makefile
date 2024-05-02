@@ -5,13 +5,16 @@
 #                                                     +:+ +:+         +:+      #
 #    By: socana-b <socana-b@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/05/02 13:01:04 by socana-b          #+#    #+#              #
-#    Updated: 2024/05/02 13:01:05 by socana-b         ###   ########.fr        #
+#    Created: 2024/05/02 13:06:20 by socana-b          #+#    #+#              #
+#    Updated: 2024/05/02 13:17:38 by socana-b         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS	=	main.cpp \
-			Fixed.cpp
+			ClapTrap.cpp \
+			ScavTrap.cpp \
+			FragTrap.cpp \
+			DiamondTrap.cpp
 
 CC		=	c++
 
@@ -19,7 +22,7 @@ CFLAGS	=	-Wall -Wextra -Werror -std=c++98 -g -fsanitize=address
 
 OBJS	=	$(SRCS:.cpp=.o)
 
-NAME	=	fixed
+NAME	=	diamondtrap
 
 RM		=	rm -f
 

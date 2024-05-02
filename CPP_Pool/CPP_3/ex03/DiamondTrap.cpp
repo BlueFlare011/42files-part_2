@@ -1,28 +1,14 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   DiamondTrap.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: socana-b <socana-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/02 13:01:00 by socana-b          #+#    #+#             */
-/*   Updated: 2024/05/02 13:01:06 by socana-b         ###   ########.fr       */
+/*   Created: 2024/05/02 13:26:34 by socana-b          #+#    #+#             */
+/*   Updated: 2024/05/02 13:26:52 by socana-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Fixed.hpp"
-#include <iostream>
+# include "DiamondTrap.hpp"
 
-int main( void )
-{
-	Fixed a;
-	Fixed b( a );
-	Fixed c;
-
-	c = b;
-	
-	std::cout << a.getRawBits() << std::endl;
-	std::cout << b.getRawBits() << std::endl;
-	std::cout << c.getRawBits() << std::endl;
-	return 0;
-}

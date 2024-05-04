@@ -6,7 +6,7 @@
 /*   By: socana-b <socana-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 13:05:56 by socana-b          #+#    #+#             */
-/*   Updated: 2024/05/02 13:05:58 by socana-b         ###   ########.fr       */
+/*   Updated: 2024/05/04 11:10:46 by socana-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include <iostream>
 #include "ClapTrap.hpp"
 
-class ScavTrap : public ClapTrap
+class ScavTrap : virtual public ClapTrap
 {
 	public:
 		ScavTrap(std::string name);

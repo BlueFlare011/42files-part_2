@@ -6,47 +6,51 @@
 /*   By: socana-b <socana-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 13:26:34 by socana-b          #+#    #+#             */
-/*   Updated: 2024/05/04 13:10:40 by socana-b         ###   ########.fr       */
+/*   Updated: 2024/05/16 20:08:43 by socana-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "DiamondTrap.hpp"
 
-DiamondTrap(std::string name)
+DiamondTrap::DiamondTrap()
 {
 	std::cout << "DiamondTrap Constructor called" << std::endl;
-	this->hitPoints = 100;
-	this->energyPoints = 100;
-	this->attackDamage = 30;
+	this->name = this->ClapTrap::name;
+	this->FragTrap::hitPoints;
+	this->ScavTrap::energyPoints;
+	this->FragTrap::attackDamage;
 }
 
-
-DiamondTrap()
+DiamondTrap::DiamondTrap(const DiamondTrap & diamondTrap)
 {
-
+	std::cout << "DiamondTrap Copy Constructor called" << std::endl;
+	this->name = diamondTrap.name;
+	this->hitPoints = diamondTrap.hitPoints;
+	this->energyPoints = diamondTrap.energyPoints;
+	this->attackDamage = diamondTrap.attackDamage;
 }
 
-DiamondTrap(const DiamondTrap & DiamondTrap)
+DiamondTrap::~DiamondTrap()
 {
-
+	std::cout << "DiamondTrap Destructor called" << std::endl;
 }
 
-~DiamondTrap()
+DiamondTrap & DiamondTrap::operator=(const DiamondTrap & diamondTrap)
 {
-
-}
-
-DiamondTrap & operator=(const DiamondTrap & DiamondTrap)
-{
-
+	std::cout << "DiamondTrap Copy Constructor called" << std::endl;
+	this->name = diamondTrap.name;
+	this->hitPoints = diamondTrap.hitPoints;
+	this->energyPoints = diamondTrap.energyPoints;
+	this->attackDamage = diamondTrap.attackDamage;
+	return (*this);
 }
 		
-std::string clapTrapName(void)
+std::string	DiamondTrap::clapTrapName(void)
 {
-
+	return this->ClapTrap::name;
 }
 
-void		whoAmI(void)
+void	DiamondTrap::whoAmI(void)
 {
-	
+	std::cout << "My name is: " + this->name + "and my grandfather's name is: " + this->ClapTrap::name;
 }

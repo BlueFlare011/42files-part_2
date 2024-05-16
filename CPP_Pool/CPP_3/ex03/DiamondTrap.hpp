@@ -6,7 +6,7 @@
 /*   By: socana-b <socana-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 13:24:50 by socana-b          #+#    #+#             */
-/*   Updated: 2024/05/04 12:41:16 by socana-b         ###   ########.fr       */
+/*   Updated: 2024/05/16 19:08:06 by socana-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ class DiamondTrap : public FragTrap, public ScavTrap
 		~DiamondTrap();
 		DiamondTrap & operator=(const DiamondTrap & DiamondTrap);
 		
-		std::string clapTrapName(void);
+		std::string	clapTrapName(void);
 		void		whoAmI(void);
 };
 

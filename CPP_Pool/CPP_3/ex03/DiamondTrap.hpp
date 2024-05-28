@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   DiamondTrap.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: socana-b <socana-b@student.42.fr>          +#+  +:+       +#+        */
+/*   By: blueflare011 <blueflare011@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 13:24:50 by socana-b          #+#    #+#             */
-/*   Updated: 2024/05/16 19:08:06 by socana-b         ###   ########.fr       */
+/*   Updated: 2024/05/28 18:48:45 by blueflare01      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ class DiamondTrap : public FragTrap, public ScavTrap
 		~DiamondTrap();
 		DiamondTrap & operator=(const DiamondTrap & DiamondTrap);
 		
-		std::string	clapTrapName(void);
-		void		whoAmI(void);
+		void	whoAmI(void);
+		void	attack(const std::string & target);
 };
 
 #endif

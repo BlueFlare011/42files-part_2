@@ -6,7 +6,7 @@
 /*   By: socana-b <socana-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 13:00:54 by socana-b          #+#    #+#             */
-/*   Updated: 2024/05/02 13:00:57 by socana-b         ###   ########.fr       */
+/*   Updated: 2024/05/30 16:00:17 by socana-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ public:
 	Fixed(const Fixed& fixed);
 	Fixed & operator = (const Fixed& fixed);
 	~Fixed();
+
 	int getRawBits(void) const;
 	void setRawBits(int const raw);
 };

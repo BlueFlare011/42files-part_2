@@ -6,27 +6,53 @@
 /*   By: socana-b <socana-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 13:03:59 by socana-b          #+#    #+#             */
-/*   Updated: 2024/05/16 18:56:12 by socana-b         ###   ########.fr       */
+/*   Updated: 2024/06/01 13:33:50 by socana-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Point.hpp"
 
+void drawTriangle1()
+{
+	std::cout << std::endl <<
+	"          p3       " << std::endl <<
+	"          /\\       " << std::endl <<
+	"         /  \\      " << std::endl <<
+	"   r*   /    \\     " << std::endl <<
+	"       /      \\    " << std::endl <<
+	"    p1/________\\p2" << std::endl << std::endl;
+}
+
+void drawTriangle2()
+{
+	std::cout << std::endl <<
+	"          p3       " << std::endl <<
+	"          /\\       " << std::endl <<
+	"         /  \\      " << std::endl <<
+	"        /  r*\\     " << std::endl <<
+	"       /      \\    " << std::endl <<
+	"    p1/________\\p2" << std::endl << std::endl;
+}
+
 int main()
 {
-	Point p1(-30.0f, -30.0f), p2(30.0f, -30.0), p3(0.0f, 30.0f);
-	Point rout(-40.0f, 0.0f), rin(10.0f, 10.0f);
+	Point p1(-30, -30), p2(30, -30), p3(0, 30);
+	Point rout(-40, 0), rin(10, 10);
 
-	std::cout << "p1: (-8, -8) p2: (8, -8) p3: (0, 8)" << std::endl;
-	std::cout << "El punto (-10, 0) esta:" << std::endl;
+	std::cout << "p1: (-30, -30) p2: (30, -30) p3: (0, 30)" << std::endl;
+
+	drawTriangle1();
 	
+	std::cout << "El punto r: (-40, 0) esta:" << std::endl;
 	if (bsp(p1, p2, p3, rout)){
 		std::cout << "Dentro" << std::endl;
 	}else{
 		std::cout << "Fuera" << std::endl;
 	}
 
-	std::cout << "El punto (2, 2) esta:" << std::endl;
+	drawTriangle2();
+
+	std::cout << "El punto (10, 10) esta:" << std::endl;
 	
 	if (bsp(p1, p2, p3, rin)){
 		std::cout << "Dentro" << std::endl;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ScavTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blueflare011 <blueflare011@student.42.f    +#+  +:+       +#+        */
+/*   By: socana-b <socana-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/02 13:06:25 by socana-b          #+#    #+#             */
-/*   Updated: 2024/05/27 17:30:13 by blueflare01      ###   ########.fr       */
+/*   Created: 2024/05/02 13:05:33 by socana-b          #+#    #+#             */
+/*   Updated: 2024/06/08 15:04:36 by socana-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ ScavTrap::ScavTrap(std::string name) : ClapTrap(name)
 	this->attackDamage = 20;
 }
 
-ScavTrap::ScavTrap() : ClapTrap()
+ScavTrap::ScavTrap() : ClapTrap() 
 {
 	std::cout << "ScavTrap Default Constructor called" << std::endl;
 	this->hitPoints = 100;
@@ -40,21 +40,20 @@ ScavTrap::~ScavTrap()
 
 ScavTrap & ScavTrap::operator=(const ScavTrap & scavtrap)
 {
+	ClapTrap::operator=(scavtrap);
 	return(*this);
 }
 
 void ScavTrap::attack(const std::string & target)
 {
-	if (this->hitPoints <= 0){
+	if (this->hitPoints <= 0)
 		std::cout << "R.I.P \"" << this->name << "\" is dead X(" << std::endl;
-		return ;
-	}
-	if (this->energyPoints <= 0){
+	else if (this->energyPoints <= 0)
 		std::cout << this->name << " has no energy points left" << std::endl;
-		return ;
+	else{
+		this->energyPoints--;
+		std::cout << "ScavTrap \"" << this->name << "\" attacks " << target << ", causing " << this->attackDamage << " points of damage!" << std::endl;
 	}
-	this->energyPoints--;
-	std::cout << "ScavTrap \"" << this->name << "\" attacks " << target << ", causing " << this->attackDamage << " points of damage!" << std::endl;
 }
 
 void ScavTrap::guardGate()

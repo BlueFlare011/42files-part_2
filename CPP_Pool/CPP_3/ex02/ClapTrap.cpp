@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: socana-b <socana-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/02 13:06:50 by socana-b          #+#    #+#             */
-/*   Updated: 2024/05/02 13:06:51 by socana-b         ###   ########.fr       */
+/*   Created: 2024/05/02 13:05:22 by socana-b          #+#    #+#             */
+/*   Updated: 2024/06/08 14:49:30 by socana-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,16 +56,14 @@ ClapTrap & ClapTrap::operator=(const ClapTrap & clapTrap)
 
 void ClapTrap::attack(const std::string& target)
 {
-	if (this->hitPoints <= 0){
+	if (this->hitPoints <= 0)
 		std::cout << "R.I.P \"" << this->name << "\" is dead X(" << std::endl;
-		return ;
-	}
-	if (this->energyPoints <= 0){
+	else if (this->energyPoints <= 0)
 		std::cout << this->name << " has no energy points left" << std::endl;
-		return ;
+	else{
+		this->energyPoints--;
+		std::cout << "ClapTrap \"" << this->name << "\" attacks " << target << ", causing " << this->attackDamage << " points of damage!" << std::endl;
 	}
-	this->energyPoints--;
-	std::cout << "ClapTrap \"" << this->name << "\" attacks " << target << ", causing " << this->attackDamage << " points of damage!" << std::endl;
 }
 
 void ClapTrap::takeDamage(unsigned int amount)
@@ -82,17 +80,15 @@ void ClapTrap::takeDamage(unsigned int amount)
 
 void ClapTrap::beRepaired(unsigned int amount)
 {
-	if (this->hitPoints <= 0){
+	if (this->hitPoints <= 0)
 		std::cout << "R.I.P \"" << this->name << "\" is dead X(" << std::endl;
-		return ;
-	}
-	if (this->energyPoints <= 0){
+	else if (this->energyPoints <= 0)
 		std::cout << this->name << " has no energy points left" << std::endl;
-		return ;
-	}
-	this->energyPoints--;
-	this->hitPoints += amount;
-	std::cout << "ClapTrap \"" << this->name << "\" repair itself by " << amount << " hitpoints, " << this->name << " has " << this->hitPoints << " hitpoints." << std::endl;
+	else{
+		this->energyPoints--;
+		this->hitPoints += amount;
+		std::cout << "ClapTrap \"" << this->name << "\" repair itself by " << amount << " hitpoints, " << this->name << " has " << this->hitPoints << " hitpoints." << std::endl;
+	}	
 }
 
 std::string ClapTrap::getName (void)

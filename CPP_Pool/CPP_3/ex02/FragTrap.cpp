@@ -6,7 +6,7 @@
 /*   By: socana-b <socana-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 13:06:03 by socana-b          #+#    #+#             */
-/*   Updated: 2024/05/02 13:06:04 by socana-b         ###   ########.fr       */
+/*   Updated: 2024/06/08 15:04:00 by socana-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,21 +40,20 @@ FragTrap::~FragTrap()
 
 FragTrap & FragTrap::operator=(const FragTrap & fragtrap)
 {
+	ClapTrap::operator=(fragtrap);
 	return(*this);
 }
 
 void FragTrap::attack(const std::string & target)
 {
-	if (this->hitPoints <= 0){
+	if (this->hitPoints <= 0)
 		std::cout << "R.I.P \"" << this->name << "\" is dead X(" << std::endl;
-		return ;
-	}
-	if (this->energyPoints <= 0){
+	else if (this->energyPoints <= 0)
 		std::cout << this->name << " has no energy points left" << std::endl;
-		return ;
+	else{
+		this->energyPoints--;
+		std::cout << "FragTrap \"" << this->name << "\" attacks " << target << ", causing " << this->attackDamage << " points of damage!" << std::endl;
 	}
-	this->energyPoints--;
-	std::cout << "FragTrap \"" << this->name << "\" attacks " << target << ", causing " << this->attackDamage << " points of damage!" << std::endl;
 }
 
 void FragTrap::highFivesGuys(void)

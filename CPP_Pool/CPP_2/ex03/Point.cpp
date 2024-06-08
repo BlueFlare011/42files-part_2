@@ -6,7 +6,7 @@
 /*   By: socana-b <socana-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 13:03:49 by socana-b          #+#    #+#             */
-/*   Updated: 2024/06/01 13:35:56 by socana-b         ###   ########.fr       */
+/*   Updated: 2024/06/08 13:31:56 by socana-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ Point::Point(const Point& point): _x(point._x), _y(point._y) {}
 
 Point& Point::operator = (const Point& point)
 {
+	(void) point;
 	std::cout << "Assignment Operator can't be used with constant attributes" << std::endl;
 	return (*this);
 }
@@ -38,7 +39,7 @@ float Point::getArea(Point & p1, Point & p2)
 	y3 = p2._y.toFloat();
 
 
-	return (abs(x1*(y2-y3) + x2*(y3-y1)+ x3*(y1-y2))/2.0);
+	return (std::abs(x1*(y2-y3) + x2*(y3-y1)+ x3*(y1-y2))/2.0);
 }
 
 void Point::toString()

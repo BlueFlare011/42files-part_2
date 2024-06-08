@@ -6,7 +6,7 @@
 #    By: socana-b <socana-b@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/02 13:06:20 by socana-b          #+#    #+#              #
-#    Updated: 2024/05/02 13:06:21 by socana-b         ###   ########.fr        #
+#    Updated: 2024/06/08 13:38:34 by socana-b         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,9 +15,9 @@ SRCS	=	main.cpp \
 			ScavTrap.cpp \
 			FragTrap.cpp
 
-CC		=	c++
+CXX		=	c++
 
-CFLAGS	=	-Wall -Wextra -Werror -std=c++98 -g -fsanitize=address
+CXXFLAGS	=	-Wall -Wextra -Werror -std=c++98 -g -fsanitize=address
 
 OBJS	=	$(SRCS:.cpp=.o)
 
@@ -27,7 +27,7 @@ RM		=	rm -f
 
 all: $(NAME)
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
+	$(CXX) $(CXXFLAGS) $(OBJS) -o $(NAME)
 
 clean:
 	@$(RM) $(OBJS)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blueflare011 <blueflare011@student.42.f    +#+  +:+       +#+        */
+/*   By: socana-b <socana-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 19:39:03 by socana-b          #+#    #+#             */
-/*   Updated: 2024/05/28 18:54:20 by blueflare01      ###   ########.fr       */
+/*   Updated: 2024/06/11 16:45:25 by socana-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,48 @@
 
 int main(void)
 {
-
-	DiamondTrap algo = DiamondTrap();
+	ClapTrap clap = ClapTrap("Clapi");
+	FragTrap frag = FragTrap("Froggi");
+	ScavTrap scap = ScavTrap("Scapi");
+	DiamondTrap diamond = DiamondTrap("Dialga");
 
 	std::cout << std::endl << "   READY GO!" << std::endl << "\\_____________/" << std::endl << std::endl;
 
 	
-	algo.attack("target");
-	algo.whoAmI();
+	diamond.whoAmI();
+	diamond.attack(clap.getName());
+	clap.takeDamage(diamond.getAttackDamage());
+	std::cout << "   <--->" << std::endl;
+	scap.guardGate();
+	scap.attack(diamond.getName());
+	diamond.takeDamage(scap.getAttackDamage());
+	scap.attack(diamond.getName());
+	diamond.takeDamage(scap.getAttackDamage());
+	diamond.guardGate();
+	diamond.attack(scap.getName());
+	diamond.attack(scap.getName());
+	diamond.attack(scap.getName());
+	diamond.attack(scap.getName());
+	diamond.attack(scap.getName());
+	scap.takeDamage(diamond.getAttackDamage() * 5);
+	std::cout << "   <--->" << std::endl;
+	frag.highFivesGuys();
+	diamond.attack(frag.getName());
+	frag.takeDamage(diamond.getAttackDamage());
+	frag.attack(diamond.getName());
+	diamond.takeDamage(frag.getAttackDamage());
+	diamond.beRepaired(5);
+	frag.attack(diamond.getName());
+	diamond.takeDamage(frag.getAttackDamage());
+	diamond.attack(frag.getName());
+	diamond.attack(frag.getName());
+	diamond.attack(frag.getName());
+	diamond.attack(frag.getName());
+	frag.takeDamage(diamond.getAttackDamage()*4);
+
 
 	std::cout << std::endl << "/-------------\\" << std::endl << "   G A M E !" << std::endl << std::endl;
-	std::cout << "NO CONTEST" << std::endl;
+	std::cout << "¡" << diamond.realName() << " Wins!" << std::endl << std::endl;
 
 	return (0);
 }

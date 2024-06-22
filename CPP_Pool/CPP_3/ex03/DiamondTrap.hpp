@@ -6,7 +6,7 @@
 /*   By: socana-b <socana-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 13:24:50 by socana-b          #+#    #+#             */
-/*   Updated: 2024/06/11 16:47:02 by socana-b         ###   ########.fr       */
+/*   Updated: 2024/06/22 14:31:05 by socana-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,7 @@ class DiamondTrap : public FragTrap, public ScavTrap
 		
 		void	whoAmI(void);
 		void	attack(const std::string & target);
-		//Temporal
-		std::string realName();
+		std::string getName();
 };
 
 #endif

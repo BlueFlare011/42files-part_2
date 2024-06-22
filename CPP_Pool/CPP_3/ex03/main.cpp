@@ -6,7 +6,7 @@
 /*   By: socana-b <socana-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 19:39:03 by socana-b          #+#    #+#             */
-/*   Updated: 2024/06/11 16:45:25 by socana-b         ###   ########.fr       */
+/*   Updated: 2024/06/22 14:36:23 by socana-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int main(void)
 	FragTrap frag = FragTrap("Froggi");
 	ScavTrap scap = ScavTrap("Scapi");
 	DiamondTrap diamond = DiamondTrap("Dialga");
+	DiamondTrap test = diamond;
 
 	std::cout << std::endl << "   READY GO!" << std::endl << "\\_____________/" << std::endl << std::endl;
 
@@ -55,7 +56,11 @@ int main(void)
 
 
 	std::cout << std::endl << "/-------------\\" << std::endl << "   G A M E !" << std::endl << std::endl;
-	std::cout << "¡" << diamond.realName() << " Wins!" << std::endl << std::endl;
+	std::cout << "¡" << diamond.getName() << " Wins!" << std::endl << std::endl;
 
+	test.attack("Pingo");
+	test.beRepaired(10);
+	test.takeDamage(40);
+	test.whoAmI();
 	return (0);
 }

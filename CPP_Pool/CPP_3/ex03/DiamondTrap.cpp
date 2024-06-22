@@ -6,7 +6,7 @@
 /*   By: socana-b <socana-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 13:26:34 by socana-b          #+#    #+#             */
-/*   Updated: 2024/06/11 16:46:56 by socana-b         ###   ########.fr       */
+/*   Updated: 2024/06/22 14:35:51 by socana-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ DiamondTrap::DiamondTrap(std::string name): ClapTrap(name + "_clap_name"), FragT
 
 DiamondTrap::DiamondTrap(const DiamondTrap & diamondTrap): ClapTrap(diamondTrap), FragTrap(), ScavTrap()
 {
+	this->name = diamondTrap.name;
 	std::cout << "DiamondTrap Copy Constructor called" << std::endl;
 }
 
@@ -59,8 +60,7 @@ void	DiamondTrap::whoAmI(void)
 	std::cout << "My name is: " << this->name << " and my grandfather's name is: " << this->ClapTrap::name << std::endl;
 }
 
-//Temporal
-std::string DiamondTrap::realName()
+std::string DiamondTrap::getName()
 {
 	return this->name;
 }

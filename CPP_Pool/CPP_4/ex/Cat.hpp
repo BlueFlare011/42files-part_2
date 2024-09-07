@@ -3,17 +3,17 @@
 
 #include "Animal.hpp"
 
-class Cat : public Animal
+class Cat: public Animal
 {
+private:
 public:
+	Cat(std::string type);
 	Cat();
 	Cat(const Cat & cat);
-	Cat & operator= (const Cat & cat);
+	Cat & operator=(const Cat & cat);
 	~Cat();
 
-	void makeSound() const;
-
+	void makeSound();
 };
-
 
 #endif

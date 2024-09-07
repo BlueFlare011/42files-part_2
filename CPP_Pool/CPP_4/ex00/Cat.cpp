@@ -1,23 +1,21 @@
 #include "Cat.hpp"
 
-Cat::Cat(std::string type): Animal(type)
-{
-	std::cout << "Cat Constructor Called" << std::endl;
-}
-
-Cat::Cat()
+Cat::Cat() : Animal()
 {
 	std::cout << "Cat Default Constructor Called" << std::endl;
+	this->type = "Cat";
 }
 
-Cat::Cat(const Cat & cat)
+Cat::Cat(const Cat & cat) : Animal(cat)
 {
 	std::cout << "Cat Copy Constructor Called" << std::endl;
 }
 
-Cat & Cat::operator=(const Cat & cat)
+Cat & Cat::operator= (const Cat & cat)
 {
-	std::cout << "Cat Copy Assignment Constructor Called" << std::endl;
+	std::cout << "Cat Copy Assingment Constructor Called" << std::endl;
+	Animal::operator= (cat);
+	return (*this);
 }
 
 Cat::~Cat()
@@ -25,7 +23,7 @@ Cat::~Cat()
 	std::cout << "Cat Destructor Called" << std::endl;
 }
 
-void Cat::makeSound()
+void Cat::makeSound() const
 {
-	std::cout << "Miau Miau" << std::endl;
+	std::cout << "😺 Miau Miau 😺" << std::endl;
 }

@@ -33,3 +33,7 @@ void Animal::makeSound() const
 {
 	std::cout << "<Animal Sound>" << std::endl;
 }
+
+void Animal::learnSomething(std::string idea){(void)idea;}
+void Animal::forgetSomething(){}
+void Animal::rememberSomething(){}

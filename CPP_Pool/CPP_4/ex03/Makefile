@@ -6,16 +6,16 @@
 #    By: blueflare011 <blueflare011@student.42.f    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/02 13:05:31 by socana-b          #+#    #+#              #
-#    Updated: 2024/09/22 20:05:31 by blueflare01      ###   ########.fr        #
+#    Updated: 2024/10/13 20:04:14 by blueflare01      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS	=	main.cpp \
-			Animal.cpp \
-			Cat.cpp \
-			Dog.cpp \
-			WrongAnimal.cpp \
-			WrongCat.cpp
+SRCS	=	Character.cpp \
+			AMateria.cpp \
+			Ice.cpp \
+			Cure.cpp \
+			MateriaSource.cpp \
+			main.cpp \
 
 CXX		=	c++
 
@@ -23,7 +23,7 @@ CXXFLAGS	=	-Wall -Wextra -Werror -std=c++98 -g -fsanitize=address
 
 OBJS	=	$(SRCS:.cpp=.o)
 
-NAME	=	zoo
+NAME	=	alchemy
 
 RM		=	rm -f
 

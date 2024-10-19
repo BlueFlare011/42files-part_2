@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   WrongAnimal.cpp                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: socana-b <socana-b@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/10/19 11:40:34 by socana-b          #+#    #+#             */
+/*   Updated: 2024/10/19 11:47:17 by socana-b         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "WrongAnimal.hpp"
 
 WrongAnimal::WrongAnimal()
 {
 	std::cout << "WrongAnimal Default Constructor Called" << std::endl;
-	this->type = "-";
+	this->type = "Wrong -";
 }
 
 WrongAnimal::WrongAnimal(const WrongAnimal & wrongAnimal)

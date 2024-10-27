@@ -30,7 +30,7 @@ int main()
 	std::cout << std::endl << "Wrong Sounds:" << std::endl << std::endl;
 	wrong_i->makeSound();
 	wrong_meta->makeSound();
-	
+
 	std::cout << std::endl;
 	delete meta;
 	delete i;

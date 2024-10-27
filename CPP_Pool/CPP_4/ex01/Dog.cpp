@@ -10,13 +10,16 @@ Dog::Dog() : Animal()
 Dog::Dog(const Dog & dog) : Animal(dog)
 {
 	std::cout << "Dog Copy Constructor Called" << std::endl;
+	*this = dog;
 }
 
 Dog & Dog::operator= (const Dog & dog)
 {
 	std::cout << "Dog Copy Assingment Constructor Called" << std::endl;
-	Animal::operator= (dog);
-	*this->brain = *dog.brain;
+	this->type = dog.type;
+	this->brain = new Brain();
+	for (int i = 0; i < 100; i++)
+		this->brain[i] = dog.brain[i];
 	return (*this);
 }
 

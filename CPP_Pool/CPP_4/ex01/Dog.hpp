@@ -11,10 +11,11 @@ private:
 public:
 	Dog();
 	Dog(const Dog & dog);
-	Dog & operator= (const Dog & dog);
+	Dog & operator= (const Dog & animal);
 	~Dog();
 
 	void makeSound() const;
+	Dog & assign(const Dog & animal);
 
 	void learnSomething(std::string idea);
 	void forgetSomething();

@@ -27,6 +27,6 @@ int main(void)
 			zoo[i]->makeSound();
 	}
 	for (int i = 0; i < 10; i++)
-		delete zoo[i];
+		delete zoo[i];	
 	return 0;
 }

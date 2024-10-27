@@ -11,10 +11,12 @@ private:
 public:
 	Cat();
 	Cat(const Cat & cat);
-	Cat & operator= (const Cat & cat);
+	Cat & operator= (const Cat & animal);
 	~Cat();
 
 	void makeSound() const;
+	Cat & assign(const Cat & animal);
+
 
 	void learnSomething(std::string idea);
 	void forgetSomething();

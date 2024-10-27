@@ -16,8 +16,10 @@ Cat::Cat(const Cat & cat) : Animal(cat)
 Cat & Cat::operator= (const Cat & cat)
 {
 	std::cout << "Cat Copy Assingment Constructor Called" << std::endl;
-	Animal::operator= (cat);
-	*this->brain = *cat.brain;
+	this->type = cat.type;
+	this->brain = new Brain();
+	for (int i = 0; i < 100; i++)
+		this->brain[i] = cat.brain[i];
 	return (*this);
 }
 

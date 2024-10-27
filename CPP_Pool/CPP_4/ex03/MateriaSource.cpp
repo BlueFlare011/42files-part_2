@@ -1,9 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   MateriaSource.cpp                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: socana-b <socana-b@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/10/19 11:43:01 by socana-b          #+#    #+#             */
+/*   Updated: 2024/10/19 12:42:13 by socana-b         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "MateriaSource.hpp"
 
 MateriaSource::MateriaSource()
 {
 	std::cout << "MateriaSource Default Constructor Called" << std::endl;
 	this->index = 0;
+	for (int i = 0; i < MAX_SLOTS; i++)
+		this->slots[i] = NULL;
 }
 
 MateriaSource::MateriaSource(MateriaSource & materia)
@@ -16,13 +30,16 @@ MateriaSource & MateriaSource::operator= (MateriaSource & materia)
 {
 	std::cout << "MateriaSource Copy Assingment Constructor Called" << std::endl;
 	this->index = materia.index;
+	for (int i = 0; i < MAX_SLOTS; i++)
+		this->slots[i] = materia.slots[i];
 	return *this;
 }
 
 MateriaSource::~MateriaSource()
 {
 	std::cout << "MateriaSource Destructor Called" << std::endl;
-	delete *this->slots;
+	for (int i = 0; i < this->index; i++)
+		delete this->slots[i];
 }
 
 void MateriaSource::learnMateria(AMateria* materia)
